@@ -42,14 +42,7 @@ def run():
 	pass
 
 def draw(surface):
-	## Draw the Dots
 	surface.fill((255,255,255))
-	blitText(surface, "Hello", (10,10))
-	## Draw the obstacles
-
-	## Draw the Overlay
-
-	## Draw the gui
 	return surface
 
 
@@ -57,7 +50,7 @@ if __name__ == "__main__":
 	size = width, height = 800, 800
 	pygame.init()
 	pygame.display.set_mode(size, RESIZABLE)
-	pygame.display.set_caption("Smart Dots")
+	pygame.display.set_caption("Pokemon Editor")
 	setIcon(255,0,0)
 
 	mouse = Mouse()
@@ -65,19 +58,19 @@ if __name__ == "__main__":
 	keysDown = dict()
 	unicodes = dict()
 
+	init()
+
 	frameRate = 60
-	frameTime = 1/frameRate
 	lFrame = 0
 	runRate = 60
-	runTime = 1/runRate
 	lRun = 0
 	while 1:
 		## Run the clock stuff
-		if abs(time() - lRun) > runTime:
+		if abs(time() - lRun) > 1/runRate:
 			run()
 			lRun = time()
 
-		if abs(time() - lFrame) > frameTime:
+		if abs(time() - lFrame) > 1/frameRate:
 		## Draw stuff to the screen
 			mainSurface = draw(pygame.Surface(size))
 			pygame.display.get_surface().blit(mainSurface, (0,0))
