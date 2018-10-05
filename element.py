@@ -231,5 +231,14 @@ class Element(object):
 		s += ")"
 		return s
 
-
-		
+if __name__ == "__main__":
+	types = list(element_Advantages.keys())
+	elements = []
+	for i in types:
+		elements.append(Element(i))
+	supertype = elements[0]
+	for i in range(1,len(elements)):
+		supertype += elements[i]
+	print(supertype)
+	for i in elements:
+		print(i.names[0], i > supertype)
