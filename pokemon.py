@@ -79,7 +79,7 @@ class Pokemon(object):
 		self.evolution = []
 
 		## Encounter Statistics
-		self.femaleRate = 0
+		self.femaleRate = 0.5
 		self.shinyRate = 1/4096
 		self.captureRate = 0
 
@@ -134,6 +134,9 @@ class Pokemon(object):
 
 		return STATDELTA
 
+	def loadSprites(self):
+		pass
+
 	def checkLevelUp(self):
 		reutrn checkLevel(self)
 
@@ -183,7 +186,18 @@ class Pokemon(object):
 
 		self.evolution = poke.evolution.copy()
 
+		self.femaleRate = poke.femaleRate
+		self.shinyRate = poke.shinyRate
+		self.captureRate = poke.captureRate
 
+		self.regular = poke.regular
+		self.sprites = poke.sprites.copy()
+
+
+		self.introAnimation = poke.introAnimation#.copy()
+		self.deathAnimation = poke.deathAnimation#.copy()
+		self.actionAnimation = poke.actionAnimation#.copy()
+		self.reactionAnimation = poke.reactionAnimation#.copy()
 
 
 
