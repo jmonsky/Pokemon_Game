@@ -1,14 +1,30 @@
 import pygame
 from pygame.locals import *
+from GIFImage_ext import GIFImage
+
+## TEMPOREY
+from os import listdir
+from os.path import isfile, join
+from time import sleep, time
 
 class Animation(object):
 
     def __init__(self, anim):
-        self.sprite_sheet = pygame.image.load(".\\Assets\\SpriteSheets\\"+anim+"_SS.png")
-        self.fHeight = self.sprite_sheet.get_height()
-        with open(".\\Assets\\SpriteSheets\\"+anim+".frames", "r") as frameFile:
-            self.frames = int(frameFile.read())
-        self.fWidth = self.sprite_sheet.get_width()/self.frames
+        global deadpokes
+        self.anim = anim
+        self.loadLater = False
+        try:
+            self.sprite_sheet = pygame.image.load(".\\Assets\\SpriteSheets\\"+anim+"_SS.png")
+        except:
+            print("out of memory, will save to load later")
+            self.path = anim
+            self.loadLater = True
+            deadpokes.append(anim[:3])
+        else:
+            self.fHeight = self.sprite_sheet.get_height()
+            with open(".\\Assets\\SpriteSheets\\"+anim+".frames", "r") as frameFile:
+                self.frames = int(frameFile.read())
+            self.fWidth = self.sprite_sheet.get_width()/self.frames
 
 
         self.index = 0
@@ -26,58 +42,56 @@ class Animation(object):
         return image
 
     def update(self):
-        if self.tick >= self.fTime:
-            self.tick = 0
-            self.index += 1
-            if self.index >= self.frames:
-                self.index = 0
+        if self.loadLater:
+            try:
+                self.sprite_sheet = pygame.image.load(".\\Assets\\SpriteSheets\\"+self.anim+"_SS.png")
+                self.fHeight = self.sprite_sheet.get_height()
+                with open(".\\Assets\\SpriteSheets\\"+self.anim+".frames", "r") as frameFile:
+                    self.frames = int(frameFile.read())
+                self.fWidth = self.sprite_sheet.get_width()/self.frames
+                self.loadLater = False
+            except:
+                print("DMB", self.anim)
+        else:
+            if self.tick >= self.fTime:
+                self.tick = 0
+                self.index += 1
+                if self.index >= self.frames:
+                    self.index = 0
 
-        self.tick += 1
+            self.tick += 1
 
     def draw(self, surface, pos):
-        surface.blit(self.get_image(self.index), pos)
+        if not self.loadLater:
+            surface.blit(self.get_image(self.index), pos)
 
-def pad0(num):
-    n = str(num)
-    if len(n) == 1:
-        n = "00"+n
-    elif len(n) == 2:
-        n = "0"+n
-    return n
 
 pygame.init()
 pygame.display.set_mode((200,200))
-variants = ["NF", "NB", "SF", "SB"]
-poke = 120
-UPDATE = False
-v = 0
-test = Animation(pad0(poke)+"_"+variants[v])
+
+gifmages = []
+gifs = [f for f in listdir(".\\Assets\\GIFS\\") if isfile(join(".\\Assets\\GIFS\\", f))]
+for gif in gifs:
+    if "NF" in gif and "00" in gif:
+        gifmages.append(GIFImage(".\\Assets\\GIFS\\"+gif))
+
+poke = 0
+frame = 0
 surface = pygame.display.get_surface()
 while True:
-    if UPDATE:
-        del test
-        test = Animation(pad0(poke)+"_"+variants[v])
-        UPDATE = False
-    del surface
     surface = pygame.display.get_surface()
-    test.update()
     surface.fill((255,255,255))
-    test.draw(surface, (0,0))
+    gifmages[poke].render(surface, (0,0))
     pygame.display.update()
-
+    frame += 1
+    if frame > 10000:
+        frame = 0
+        poke += 1
+        if poke >= len(gifmages):
+            poke = 0
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-        if event.type == MOUSEBUTTONUP:
-            v += 1
-            if v >= len(variants):
-                v = 0
-            UPDATE = True
-        if event.type == KEYDOWN:
-            if event.unicode == "w":
-                poke += 1
-            elif event.unicode == "s":
-                poke -= 1
-                if poke <= 0:
-                    poke = 1
-            UPDATE = True
+
+## ['009', '115', '249', '282', '286', '338', '350', '382', '424', '452', '464', '465', '479', '479', '479', '482', '485', '503', '537', '545', '563', '581', '589', '614', '641', '641', '642', '642', '643', '644', '645', '645', '645', '646', '646']
+##are all sprites that overload it

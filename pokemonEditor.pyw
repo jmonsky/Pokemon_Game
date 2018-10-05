@@ -5,8 +5,6 @@ from mouse import *
 from random import randrange
 from colorsys import hsv_to_rgb
 
-## DAVID WAS HERE
-
 def setIcon(R, G, B):
 	icon = pygame.Surface((32, 32))
 	icon.fill((R,G,B))
@@ -38,7 +36,7 @@ def init():
 	pass
 
 def run():
-	##  Running
+	##Running
 	pass
 
 def draw(surface):
@@ -60,6 +58,7 @@ if __name__ == "__main__":
 
 	init()
 
+	setIcon(0,255,0)
 	frameRate = 60
 	lFrame = 0
 	runRate = 60
