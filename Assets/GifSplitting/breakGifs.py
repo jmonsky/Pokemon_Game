@@ -2,7 +2,6 @@ import subprocess, os
 from os import listdir
 from os.path import isfile, join
 import shutil
-from time import sleep
 
 def clearDir(folder):
 	for the_file in os.listdir(folder):
@@ -15,7 +14,11 @@ def clearDir(folder):
 			print(e)
 
 def stichPNGS(refdir, inDir, outDir, filename):
+	onlyfiles = [f for f in listdir(inDir) if isfile(join(inDir, f))]
+	frames = str(len(onlyfiles))
 	searchTerm = filename[:-4]
+	with open(outDir+searchTerm+".frames", "w+") as FILE:
+		FILE.write(frames)
 	print("Stitching %s" % searchTerm)
 	os.system(".\\IM\\convert.exe "+inDir+"*.png +append "+outDir+searchTerm+"_SS.png")
 
