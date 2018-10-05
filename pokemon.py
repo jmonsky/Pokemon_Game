@@ -34,6 +34,13 @@ def addStatDicts(s1, s2):
 		"Speed":s1["Speed"]+s2["Speed"],
 	}
 
+class Pokedex(object):
+	def __init__(self):
+		self.pokes = {}
+
+	def createPokemon(self):
+		pass
+
 class Pokemon(object):
 	def __init__(self):
 		## Identification pieces
@@ -69,6 +76,7 @@ class Pokemon(object):
 		self.moves = []#MoveSet()
 		self.inflictions = []#Infliction()
 		self.party = []#Party()
+		self.evolution = []
 
 		## Encounter Statistics
 		self.femaleRate = 0
@@ -78,8 +86,14 @@ class Pokemon(object):
 		## Other Junk
 		self.regular = True
 		self.sprites = {
+		"Normal":{
 			"Front":None,#Sprite(),
 			"Back":None,#Sprite(),
+			},
+		"Shiny":{
+			"Front":None,#Sprite(),
+			"Back":None,#Sprite(),
+			},
 		}
 		#self.overworldSprite = None#Sprite() UNSURE ABOUT FOR NOW
 		self.introAnimation = None#Animation()
@@ -87,13 +101,6 @@ class Pokemon(object):
 		self.actionAnimation = None#Animation()
 		self.reactionAnimation = None#Animation()
 
-	def checkForLevelUps(self):
-		totalDelta = baseStatDict(0)
-		td = checkLevel(self)
-		while td != None:
-			totalDelta = addStatDicts(totalDelta, td)
-			td = checkLevel(self)
-		return totalDelta
 	def _setStats(self):
 		'''
 			Function will set the stats based on the current level, also returns the stat delta
@@ -126,6 +133,9 @@ class Pokemon(object):
 		}
 
 		return STATDELTA
+
+	def checkLevelUp(self):
+		reutrn checkLevel(self)
 
 	def construct(self, pokedexEntry, level=1):
 		poke = pokedexEntry
@@ -168,33 +178,34 @@ class Pokemon(object):
 		self.statMod = poke.statMod.copy()
 		self._setStats()
 		self.typing = poke.typing.copy()
-		self.exp = poke.exp
+		self.exp = checkLevel(level)
 		self.expgroup = poke.expgroup
 
+		self.evolution = poke.evolution.copy()
 
 
 
 
 
-test = Pokemon()
-test.typing = Element("Ghost", "Dragon")
-test.baseStats = {
-			"HP":150,
-			"Attack":{
-				"Special":120,
-				"Physical":120, },
-			"Defense":{
-				"Special":100,
-				"Physical":100, },
-			"Speed":90,
-			}
-test.construct(test, 1)
-# for EXP in range(1, 5000, 100):
-# 	test.exp = EXP
-# 	print(EXP, test.level, test.checkForLevelUps(), test.stats)
-test.exp = 6000000
-print(test.stats)
-print(test.checkForLevelUps())
-print(test.level)
-print(test.stats)
-print(test.exp)
+if __name__ == "__main__":
+	test = Pokemon()
+	test.typing = Element("Ghost", "Dragon")
+	test.baseStats = {
+				"HP":150,
+				"Attack":{
+					"Special":120,
+					"Physical":120, },
+				"Defense":{
+					"Special":100,
+					"Physical":100, },
+				"Speed":90,
+				}
+	test.construct(test, 1)
+	# for EXP in range(1, 5000, 100):
+	# 	test.exp = EXP
+	# 	print(EXP, test.level, test.checkForLevelUps(), test.stats)
+	test.exp = 6000000
+	print(test.stats)
+	print(test.level)
+	print(test.stats)
+	print(test.exp)
