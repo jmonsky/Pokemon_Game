@@ -5,7 +5,6 @@ from os.path import isfile, join
 from time import sleep, time
 
 class AnimatedSprite(object):
-
     def __init__(self, anim):
         self.source = anim
         self.loaded = False
@@ -55,6 +54,8 @@ class AnimatedSprite(object):
                         self.index = 0
                     if self.index < 0:
                         self.index = self.frames-1
+        else:
+            self.load()
 
     def pause(self):
         self.running = False
@@ -84,7 +85,6 @@ poke = 0
 for p in sets:
     pokes.append(AnimatedSprite(p))
 #test = AnimatedSprite("001_NB")
-pokes[0].load()
 frame = 0
 surface = pygame.display.get_surface()
 while True:
@@ -94,8 +94,6 @@ while True:
         poke += 1
         if poke >= len(pokes):
             poke = 0
-        pokes[poke].load()
-
     surface = pygame.display.get_surface()
     surface.fill((255,0,255))
     #test.draw(surface, (0,0))
@@ -108,4 +106,3 @@ while True:
             poke += 1
             if poke >= len(pokes):
                 poke = 0
-            pokes[poke].load()
