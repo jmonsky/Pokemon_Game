@@ -106,7 +106,6 @@ class GIFImage(object):
                     for i in self.frames:
                         pi2.blit(i[0], (0,0))
                 pi2.blit(pi, (x0, y0), (x0, y0, x1-x0, y1-y0))
-
                 self.frames.append([pi2, duration])
                 image.seek(image.tell()+1)
         except EOFError:

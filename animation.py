@@ -1,97 +1,111 @@
 import pygame
 from pygame.locals import *
-from GIFImage_ext import GIFImage
-
-## TEMPOREY
 from os import listdir
 from os.path import isfile, join
 from time import sleep, time
 
-class Animation(object):
+class AnimatedSprite(object):
 
     def __init__(self, anim):
-        global deadpokes
-        self.anim = anim
-        self.loadLater = False
-        try:
-            self.sprite_sheet = pygame.image.load(".\\Assets\\SpriteSheets\\"+anim+"_SS.png")
-        except:
-            print("out of memory, will save to load later")
-            self.path = anim
-            self.loadLater = True
-            deadpokes.append(anim[:3])
-        else:
-            self.fHeight = self.sprite_sheet.get_height()
-            with open(".\\Assets\\SpriteSheets\\"+anim+".frames", "r") as frameFile:
-                self.frames = int(frameFile.read())
-            self.fWidth = self.sprite_sheet.get_width()/self.frames
-
-
+        self.source = anim
+        self.loaded = False
         self.index = 0
-        self.tick = 0
-        self.fTime = 250
+        self.ptime = time()
+        self.frameRate = 120
+        self.runStep = 1
+        self.running = True
+
+    def load(self):
+        if not self.loaded:
+            anim = self.source
+            inDir = ".\\Assets\\Animations\\"+anim+"\\"
+            self.sprite_sheet = [pygame.image.load(inDir+f) for f in listdir(inDir) if isfile(join(inDir, f))]
+            self.fWidth = self.sprite_sheet[0].get_width()
+            self.fHeight = self.sprite_sheet[0].get_height()
+            self.path = anim
+            self.frames = len(self.sprite_sheet)
+            self.runTime = self.frames / self.frameRate
+            self.loaded = True
+
+    def copy(self):
+        new = AnimatedSprite(self.source)
+        new.runStep = self.runStep
+        new.frameRate = self.frameRate
+        return new
 
     def get_image(self, frame):
+        if self.loaded:
+            image = pygame.Surface((self.fWidth, self.fHeight))
+            image.fill((0,255,0))
+            image.blit(self.sprite_sheet[frame], (0, 0))
 
-        image = pygame.Surface((self.fWidth, self.fHeight))
-        image.fill((0,255,0))
-        image.blit(self.sprite_sheet, (0, 0), (frame*self.fWidth, 0, self.fWidth, self.fHeight))
+            image.set_colorkey((0,255,0))
 
-        image.set_colorkey((0,255,0))
+            return image
 
-        return image
-
-    def update(self):
-        if self.loadLater:
-            try:
-                self.sprite_sheet = pygame.image.load(".\\Assets\\SpriteSheets\\"+self.anim+"_SS.png")
-                self.fHeight = self.sprite_sheet.get_height()
-                with open(".\\Assets\\SpriteSheets\\"+self.anim+".frames", "r") as frameFile:
-                    self.frames = int(frameFile.read())
-                self.fWidth = self.sprite_sheet.get_width()/self.frames
-                self.loadLater = False
-            except:
-                print("DMB", self.anim)
-        else:
-            if self.tick >= self.fTime:
-                self.tick = 0
-                self.index += 1
-                if self.index >= self.frames:
-                    self.index = 0
-
-            self.tick += 1
 
     def draw(self, surface, pos):
-        if not self.loadLater:
+        if self.loaded:
             surface.blit(self.get_image(self.index), pos)
+            if self.running:
+                if time()-self.ptime > 1/self.frameRate:
+                    self.ptime = time()
+                    self.index += self.runStep
+                    if self.index >= self.frames:
+                        self.index = 0
+                    if self.index < 0:
+                        self.index = self.frames-1
+
+    def pause(self):
+        self.running = False
+
+    def play(self):
+        self.running = True
+
+    def reverse(self):
+        self.runStep = -abs(self.runStep)
+
+    def forward(self):
+        self.runStep = abs(self.runStep)
+
+    def switchDir(self):
+        self.runStep *= -1
+
+    def setFrameRate(self, fr):
+        self.frameRate = fr
+        self.runTime = self.frames / self.frameRate
 
 
 pygame.init()
 pygame.display.set_mode((200,200))
-
-gifmages = []
-gifs = [f for f in listdir(".\\Assets\\GIFS\\") if isfile(join(".\\Assets\\GIFS\\", f))]
-for gif in gifs:
-    if "NF" in gif and "00" in gif:
-        gifmages.append(GIFImage(".\\Assets\\GIFS\\"+gif))
-
+sets = [f for f in listdir(".\\Assets\\Animations\\")]
+pokes = []
 poke = 0
+for p in sets:
+    pokes.append(AnimatedSprite(p))
+#test = AnimatedSprite("001_NB")
+pokes[0].load()
 frame = 0
 surface = pygame.display.get_surface()
 while True:
-    surface = pygame.display.get_surface()
-    surface.fill((255,255,255))
-    gifmages[poke].render(surface, (0,0))
-    pygame.display.update()
     frame += 1
-    if frame > 10000:
+    if frame > 120:
         frame = 0
         poke += 1
-        if poke >= len(gifmages):
+        if poke >= len(pokes):
             poke = 0
+        pokes[poke].load()
+
+    surface = pygame.display.get_surface()
+    surface.fill((255,0,255))
+    #test.draw(surface, (0,0))
+    pokes[poke].draw(surface, (10,10))
+    pygame.display.update()
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-
-## ['009', '115', '249', '282', '286', '338', '350', '382', '424', '452', '464', '465', '479', '479', '479', '482', '485', '503', '537', '545', '563', '581', '589', '614', '641', '641', '642', '642', '643', '644', '645', '645', '645', '646', '646']
-##are all sprites that overload it
+        elif event.type == KEYUP:
+            poke += 1
+            if poke >= len(pokes):
+                poke = 0
+            pokes[poke].load()
