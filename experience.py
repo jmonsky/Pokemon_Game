@@ -25,6 +25,12 @@ EXP = {
 	"Fluctuating":_fluct,
 }
 
+def expToLevel(poke, level):
+	''' 
+		Return the amount of experience required for a given pokemon to level up
+	'''
+	return EXP[poke.expgroup](level)
+
 def checkLevel(poke):
 	'''
 		Check if the pokemon can level up, If it can call the _setStats() and level it up
@@ -42,5 +48,3 @@ def checkLevel(poke):
 		return None
 
 
-
-print(int(EXP["Fluctuating"](50)))

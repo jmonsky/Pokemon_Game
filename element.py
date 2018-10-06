@@ -1,4 +1,12 @@
 element_Advantages = {
+	"Typless":{
+		"SE":[],
+		"NE":[],
+		"RA":[],
+		"WA":[],
+		"IM":[],
+		"IE":[],
+	},
 	"Bug":{
 		"SE":["Dark", "Grass", "Psychic"], ## Super Effective
 		"NE":["Fighting", "Fire", "Flying", "Ghost", "Rock", "Steel", "Fairy", "Poison"], ## Not very Effective
@@ -152,6 +160,7 @@ class Element(object):
 		self.names = []
 		self.dictionaries = {}
 		for T in types:
+			T = T[0].upper()+T[1:].lower()
 			self.names.append(T)
 			self.dictionaries[T] = element_Advantages[T]
 
@@ -168,7 +177,7 @@ class Element(object):
 		return multiplier
 
 	def copy(self):
-		copy = Element(self.names[0])
+		copy = Element()
 		copy.types = self.types + 0
 		copy.names = self.names.copy()
 		copy.dictionaries = self.dictionaries.copy()

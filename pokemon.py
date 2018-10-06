@@ -1,8 +1,17 @@
+## pokemon.py
+'''
+	Houses the Pokemon and Pokedex classes
+
+	Pokemon() -> Pokemon data structure, holds the all the information about a given pokemon
+	Pokedex() -> Holds a series of pokemon and can be used to hold the baseline data for pokemon for construction later
+'''
+
 import random
 from math import floor
 
+from sprite import AnimatedSprite
 from element import Element
-from experience import checkLevel
+from experience import checkLevel, expToLevel
 
 def baseStatDict(n):
 	return {
@@ -38,8 +47,28 @@ class Pokedex(object):
 	def __init__(self):
 		self.pokes = {}
 
-	def createPokemon(self):
-		pass
+	def addPokemon(self, pokemon):
+		self.pokes[pokemon.name] = pokemon.copy()
+
+	def generateAPoke(self, id, level):
+		for poke in self.pokes.keys():
+			if poke.id == id:
+				return construct(poke, level)
+
+	def displayAPoke(self, surface, poke, scale = 1):
+		if poke in self.pokes:
+			self.pokes[poke].draw(surface, scale)
+
+	def copy(self):
+		new = Pokedex()
+		for poke in self.pokes.keys():
+			new.addPokemon(self.pokes[pokes])
+		return new
+
+	def readyToPickle():
+		[self.pokes[poke].unloadSprites() for poke in self.pokes.keys()]
+
+
 
 class Pokemon(object):
 	def __init__(self):
@@ -48,8 +77,10 @@ class Pokemon(object):
 		self.id = 0
 		self.shiny = False
 		self.gender = "Attack Helicopter"
-		self.form = "Normal"
+		self.form = ""
 		self.forms = []
+		self.forward = True
+		self.eggGroup = ""
 
 		## Statistics
 		self.level = 0
@@ -64,7 +95,10 @@ class Pokemon(object):
 		self.typing = Element()
 		self.nature = ""#Nature()
 		self.abilities = ""#Ability()
+		self.ability = ""
 		self.happiness = 0
+		self.evolution = None#EvolutionData()
+		self.expDrop = 0
 
 		## Personalization
 		self.nickname = ""
@@ -77,6 +111,7 @@ class Pokemon(object):
 		self.inflictions = []#Infliction()
 		self.party = []#Party()
 		self.evolution = []
+		self.evolves = False
 
 		## Encounter Statistics
 		self.femaleRate = 0.5
@@ -85,21 +120,34 @@ class Pokemon(object):
 
 		## Other Junk
 		self.regular = True
+		self.loadedSprites = False
+		self.formSprites = {}
 		self.sprites = {
 		"Normal":{
-			"Front":None,#Sprite(),
-			"Back":None,#Sprite(),
+			"Front":None,
+			"Back":None,
 			},
 		"Shiny":{
-			"Front":None,#Sprite(),
-			"Back":None,#Sprite(),
+			"Front":None,
+			"Back":None,
 			},
 		}
+		self.spriteFPosition = (0,0)
+		self.spriteBPosition = (0,0)
+		self.spriteFScale = 1
+		self.spriteBScale = 1
 		#self.overworldSprite = None#Sprite() UNSURE ABOUT FOR NOW
 		self.introAnimation = None#Animation()
 		self.deathAnimation = None#Animation()
 		self.actionAnimation = None#Animation()
 		self.reactionAnimation = None#Animation()
+
+	def copy(self):
+		new = Pokemon()
+		new.construct(self, self.level)
+		new.exp = self.exp
+		return new
+
 
 	def _setStats(self):
 		'''
@@ -134,11 +182,102 @@ class Pokemon(object):
 
 		return STATDELTA
 
+	def unloadSprites(self):
+		self.sprites = {
+		"Normal":{
+			"Front":None,
+			"Back":None,
+			},
+		"Shiny":{
+			"Front":None,
+			"Back":None,
+			},
+		}
+		self.loadedSprites = False
+
+
 	def loadSprites(self):
-		pass
+		self.loadedSprites = True
+		def pad0(num):
+			n = str(num)
+			if len(n) == 1:
+				n = "00"+n
+			elif len(n) == 2:
+				n = "0"+n
+			return n
+		if not self.regular:
+			for i in self.forms:
+				self.formSprites[i] = {
+				"Normal":{
+					"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NF"),
+					"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NB"),
+					},
+				"Shiny":{
+					"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SF"),
+					"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SB"),
+					},
+				}
+			try:
+				self.formSprites["NORMAL"] = {
+				"Normal":{
+					"Front":AnimatedSprite(pad0(self.id)+"_NF", False),
+					"Back":AnimatedSprite(pad0(self.id)+"_NB", False),
+					},
+				"Shiny":{
+					"Front":AnimatedSprite(pad0(self.id)+"_SF", False),
+					"Back":AnimatedSprite(pad0(self.id)+"_SB", False),
+					},
+				}
+				self.form = "NORMAL"
+				self.forms.append("NORMAL")
+			except:
+				pass
+		else:
+			self.sprites = {
+			"Normal":{
+				"Front":AnimatedSprite(pad0(self.id)+"_NF"),
+				"Back":AnimatedSprite(pad0(self.id)+"_NB"),
+				},
+			"Shiny":{
+				"Front":AnimatedSprite(pad0(self.id)+"_SF"),
+				"Back":AnimatedSprite(pad0(self.id)+"_SB"),
+				},
+			}
+		
+
+	def draw(self, surface, off, scalar=1):
+		if self.loadedSprites:
+			if self.regular:
+				if self.forward:
+					pos = (self.spriteFPosition[0]+off[0], self.spriteFPosition[1]+off[1])
+					if self.shiny:
+						self.sprites["Shiny"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+					else:
+						self.sprites["Normal"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+				else:
+					pos = (self.spriteBPosition[0]+off[0], self.spriteBPosition[1]+off[1])
+					if self.shiny:
+						self.sprites["Shiny"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+					else:
+						self.sprites["Normal"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+			else:
+				if self.forward:
+					pos = (self.spriteFPosition[0]+off[0], self.spriteFPosition[1]+off[1])
+					if self.shiny:
+						self.formSprites[self.form]["Shiny"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+					else:
+						self.formSprites[self.form]["Normal"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+				else:
+					pos = (self.spriteBPosition[0]+off[0], self.spriteBPosition[1]+off[1])
+					if self.shiny:
+						self.formSprites[self.form]["Shiny"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+					else:
+						self.formSprites[self.form]["Normal"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+		else:
+			self.loadSprites()
 
 	def checkLevelUp(self):
-		reutrn checkLevel(self)
+		return checkLevel(self)
 
 	def construct(self, pokedexEntry, level=1):
 		poke = pokedexEntry
@@ -147,16 +286,19 @@ class Pokemon(object):
 		self.name = poke.name
 		self.id = poke.id
 		self.shiny = False
+		self.eggGroup = poke.eggGroup
 		if random.random() < poke.shinyRate:
 			self.shiny = True
 		genderRand = random.random()
-		if genderRand < 1/8192:
-			pass
-		else:
-			if genderRand < self.femaleRate:
-				self.gender = "Female"
+		if self.femaleRate == -1:
+			if genderRand < 1/8192:
+				pass
 			else:
-				self.gender = "Male"
+				if genderRand < self.femaleRate:
+					self.gender = "Female"
+				else:
+					self.gender = "Male"
+			self.gender = "Genderless"
 		if poke.regular:
 			self.form = "Normal"
 			self.forms = []
@@ -177,12 +319,15 @@ class Pokemon(object):
 				"Physical":random.randint(0,31), },
 			"Speed":random.randint(0,31),
 			}
-		self.EVS = poke.EVS.copy()
+		self.EVS = baseStatDict(0)
 		self.statMod = poke.statMod.copy()
 		self._setStats()
 		self.typing = poke.typing.copy()
-		self.exp = checkLevel(level)
+		self.exp = expToLevel(self, level)
 		self.expgroup = poke.expgroup
+		self.expDrop = poke.expDrop
+		self.abilities = poke.abilities
+		self.ability = random.choice(self.abilities).copy() ## Needs rewrite for hiddenabilites
 
 		self.evolution = poke.evolution.copy()
 
@@ -191,8 +336,6 @@ class Pokemon(object):
 		self.captureRate = poke.captureRate
 
 		self.regular = poke.regular
-		self.sprites = poke.sprites.copy()
-
 
 		self.introAnimation = poke.introAnimation#.copy()
 		self.deathAnimation = poke.deathAnimation#.copy()
@@ -201,25 +344,3 @@ class Pokemon(object):
 
 
 
-if __name__ == "__main__":
-	test = Pokemon()
-	test.typing = Element("Ghost", "Dragon")
-	test.baseStats = {
-				"HP":150,
-				"Attack":{
-					"Special":120,
-					"Physical":120, },
-				"Defense":{
-					"Special":100,
-					"Physical":100, },
-				"Speed":90,
-				}
-	test.construct(test, 1)
-	# for EXP in range(1, 5000, 100):
-	# 	test.exp = EXP
-	# 	print(EXP, test.level, test.checkForLevelUps(), test.stats)
-	test.exp = 6000000
-	print(test.stats)
-	print(test.level)
-	print(test.stats)
-	print(test.exp)
