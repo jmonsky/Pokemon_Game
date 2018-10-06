@@ -7,7 +7,7 @@ import pygame
 from pokemon import Pokemon
 pokeMANS = []
 
-for t in range(250,252):
+for t in range(1,200):
     test = Pokemon()
     test.id = t
     test.loadSprites()

@@ -8,10 +8,12 @@ from random import randrange
 from colorsys import hsv_to_rgb
 import sys
 
+import jsonpickle
 import pygame
 from pygame.locals import *
 import pygame.draw as pd
 
+from pokeName import getPokeFile, getPokeByID
 from pokemon import *
 from mouse import *
 from element import Element
@@ -24,37 +26,98 @@ def setIcon(R, G, B):
 def blitText(surface, text, pos, color=(0,0,0), textSize=15, font="Arial"):
 	surface.blit(pygame.font.SysFont(font, textSize).render(text, True, color), pos)
 
+def saveCurrentPoke():
+	global workingmon
+	with open(".\\Data\\Pokemon\\"+getPokeFile(workingmon.id)+".pokedata", "w+") as file:
+		workingmon.unloadSprites()
+		file.write(jsonpickle.encode(workingmon))
+
+def loadAPoke(id):
+	global workingmon
+	with open(".\\Data\\Pokemon\\"+getPokeFile(id)+".pokedata", "r") as file:
+		workingmon = jsonpickle.decode(file.read())
+		workingmon.unloadSprites()
+	
+
 def keyPressed(key, unicode):
-	global tempText, EDITING
+	global tempText, EDITING, workingmon
 
 	if key == K_BACKSPACE:
 		if len(tempText) > 0:
 			tempText = tempText[:-1]
-	elif unicode.lower() in "abcdefghijklmnopqrstuv[](),.!?{}1234567890 +-=_*/":
+	elif key == K_RIGHT:
+		lastID = workingmon.id
+		workingmon = Pokemon()
+		workingmon.id = lastID+1
+		if workingmon.id > 649:
+			workingmon.id = 1
+		try:
+			loadAPoke(workingmon.id)
+		except:
+			workingmon.name = getPokeByID(workingmon.id)
+	elif key == K_LEFT:
+		lastID = workingmon.id
+		workingmon = Pokemon()
+		workingmon.id = lastID-1
+		if workingmon.id <= 0:
+			workingmon.id = 649
+		try:
+			loadAPoke(workingmon.id)
+
+		except:
+			workingmon.name = getPokeByID(workingmon.id)
+	elif key == K_ESCAPE:
+		EDITING = ""
+	elif unicode.lower() in "abcdefghijklmnopqrstuvwxyz[](),.!?{}1234567890 +-=_*/":
 		if EDITING != "":
 			tempText += unicode
+		else:
+			if unicode == "S":
+				saveCurrentPoke()
+			elif unicode == "+":
+				workingmon.spriteFScale += 0.05
+			elif unicode == "_":
+				workingmon.spriteFScale -= 0.05
+			elif unicode == "=":
+				workingmon.spriteBScale += 0.05
+			elif unicode == "-":
+				workingmon.spriteBScale -= 0.05
+			elif unicode == "1":
+				workingmon.spriteFPosition = (workingmon.spriteFPosition[0]-1, workingmon.spriteFPosition[1])
+			elif unicode == "3":
+				workingmon.spriteFPosition = (workingmon.spriteFPosition[0]+1, workingmon.spriteFPosition[1])
+			elif unicode == "2":
+				workingmonT.spriteFPosition = (workingmon.spriteFPosition[0], workingmon.spriteFPosition[1]+1)
+			elif unicode == "5":
+				workingmon.spriteFPosition = (workingmon.spriteFPosition[0], workingmon.spriteFPosition[1]-1)
+			elif unicode == "j":
+				workingmon.spriteBPosition = (workingmon.spriteBPosition[0]-1, workingmon.spriteBPosition[1])
+			elif unicode == "l":
+				workingmon.spriteBPosition = (workingmon.spriteBPosition[0]+1, workingmon.spriteBPosition[1])
+			elif unicode == "k":
+				workingmon.spriteBPosition = (workingmon.spriteBPosition[0], workingmon.spriteBPosition[1]+1)
+			elif unicode == "i":
+				workingmon.spriteBPosition = (workingmon.spriteBPosition[0], workingmon.spriteBPosition[1]-1)
 	elif key == K_RETURN:
 		if EDITING == "ID":
 			try:
 				newID = int(tempText)
-				workingmon.id = newID
-				workingmon.unloadSprites()
-			except:
-				pass
-		elif EDITING == "NAME":
-			workingmon.name = tempText.strip(" ")
-		elif EDITING == "FORMS":
-			try:
-				if True:
-					workingmon.regular = False
-					formlist = tempText.split(",")
+				try:
+					loadAPoke(newID)
+				except:
+					workingmon = Pokemon()
+					workingmon.id = newID
 					workingmon.unloadSprites()
-					if formlist[0] != "":
-						workingmon.forms = []
-						for i in formlist:
-							workingmon.forms.append(i.strip(" ").upper())
+					workingmon.name = getPokeByID(workingmon.id)
 			except:
 				pass
+		elif EDITING == "FORMS":
+			formlist = tempText.split(",")
+			workingmon.unloadSprites()
+			if formlist[0] != "":
+				workingmon.forms = []
+				for i in formlist:
+					workingmon.forms.append(i.upper())
 
 		elif EDITING == "FSCALE":
 			try:
@@ -75,7 +138,7 @@ def keyPressed(key, unicode):
 				pass
 		elif EDITING == "SPEED":
 			try:
-				workingmon.baseStats["SPEED"] = int(tempText)
+				workingmon.baseStats["Speed"] = int(tempText)
 			except:
 				pass
 		elif EDITING == "ATTACK":
@@ -196,10 +259,10 @@ def mousePressed(x, y, button):
 	Y = 50
 	X = 50
 	global EDITING, tempText
-	for button in range(23):
+	for button in range(25):
 		if x > X and x < X+15:
 			if y > Y and y < Y+15:
-				EDITING = ["ID", "NAME", "FORMS?", "FORMS", "FSCALE", "BSCALE", "", "", "", "HP", "SPEED", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE", "TYPES", "ABILITIES", "EVOLVES?", 
+				EDITING = ["ID", "", "FORMS?", "FORMS", "FSCALE", "BSCALE", "", "", "", "HP", "SPEED", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE", "TYPES", "ABILITIES", "EVOLVES?", 
 				"EVO COND", "EXP GROUP", "EXP DROP", "EGG GROUP", "FEMALE RATE", "SHINY RATE", "CAPTURE RATE"][button]
 				tempText = ""
 				return None
@@ -217,7 +280,6 @@ def run():
 	if EDITING == "FORMS?":
 		workingmon.regular = not workingmon.regular
 		EDITING = ""
-		workingmon.forms = []
 		workingmon.unloadSprites()
 	elif EDITING == "EVOLVES?":
 		workingmon.evolves = not workingmon.evolves
@@ -250,11 +312,11 @@ def draw(surface):
 	X = 50
 	buttons = [
 		"ID: %d" % workingmon.id,
-		"Name: %s" % workingmon.name,
+		"$NB$Name: %s" % workingmon.name,
 		"Has Forms? : %r" % (not workingmon.regular),
 		"Forms: {0}".format(workingmon.forms),
-		"Sprite Scale (F): %d" % workingmon.spriteFScale,
-		"Sprite Scale (B): %d" % workingmon.spriteBScale,
+		"Sprite Scale (F): %.2f" % workingmon.spriteFScale,
+		"Sprite Scale (B): %.2f" % workingmon.spriteBScale,
 		"$NB$Sprite Offset (F): {0}".format(workingmon.spriteFPosition),
 		"$NB$Sprite Offset (B): {0}".format(workingmon.spriteBPosition),
 		"$NB$BASE STATS",
@@ -286,8 +348,11 @@ def draw(surface):
 		blitText(surface, text, (X+20, Y))
 		Y += 20
 	if EDITING != "":
-		blitText(surface, "Editing %s: %s" % (EDITING, tempText), (int(width*1/5), 35), textSize=30)
+		blitText(surface, "Editing %s: %s" % (EDITING, tempText), (int(width*1/5), 25), textSize=30)
 	
+	workingmon.typing.drawV(dex, (0,0), "Bar")
+	workingmon.typing.drawH(dex, (120,50), "Sphere", 0.2)
+	workingmon.typing.drawH(dex, (120,0), "Icon", 0.25)
 		## Sprite Settings (scale, pos)
 
 		## Base stats + stat mods
@@ -308,7 +373,7 @@ def draw(surface):
 	## Draw the next / previous pokemon in the dex
 	surface.blit(dex, (width - dw, height - bh))
 	surface.blit(battle1, (0, height - bw))
-	surface.blit(battle2, (width - bw, 0))
+	surface.blit(battle2, (width - bw, 60))
 	return surface
 
 
@@ -332,6 +397,7 @@ if __name__ == "__main__":
 	dex = Pokedex()
 	workingmon = Pokemon()
 	workingmon.id = 1
+	workingmon.name = getPokeByID(workingmon.id)
 	tempText = ""
 	EDITING = ""
 

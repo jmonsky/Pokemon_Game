@@ -20,6 +20,10 @@ class Sprite(object):
 		if not lazyLoad:
 			self.load()
 
+	def unload(self):
+		self.image = None
+		self.loaded = False
+
 	def load(self):
 		if not self.loaded:
 			img = self.source
@@ -53,6 +57,10 @@ class AnimatedSprite(object):
 		self.running = True
 		if not lazyLoad:
 			self.load()
+
+	def unload(self):
+		self.sprite_sheet = None
+		self.loaded = False
 
 	def load(self):
 		if not self.loaded:

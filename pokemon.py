@@ -193,11 +193,14 @@ class Pokemon(object):
 			"Back":None,
 			},
 		}
+		self.formSprites = {}
+		self.typing.unloadSprites()
 		self.loadedSprites = False
 
 
 	def loadSprites(self):
 		self.loadedSprites = True
+		self.typing.loadSprites()
 		def pad0(num):
 			n = str(num)
 			if len(n) == 1:
@@ -207,42 +210,48 @@ class Pokemon(object):
 			return n
 		if not self.regular:
 			for i in self.forms:
-				self.formSprites[i] = {
-				"Normal":{
-					"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NF"),
-					"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NB"),
-					},
-				"Shiny":{
-					"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SF"),
-					"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SB"),
-					},
-				}
+				if i != "$$":
+					self.formSprites[i] = {
+					"Normal":{
+						"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NF"),
+						"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NB"),
+						},
+					"Shiny":{
+						"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SF"),
+						"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SB"),
+						},
+					}
 			try:
-				self.formSprites["NORMAL"] = {
-				"Normal":{
-					"Front":AnimatedSprite(pad0(self.id)+"_NF", False),
-					"Back":AnimatedSprite(pad0(self.id)+"_NB", False),
-					},
-				"Shiny":{
-					"Front":AnimatedSprite(pad0(self.id)+"_SF", False),
-					"Back":AnimatedSprite(pad0(self.id)+"_SB", False),
-					},
-				}
-				self.form = "NORMAL"
-				self.forms.append("NORMAL")
+				if "$$" not in self.forms or "$$" not in self.formSprites:
+					self.formSprites["$$"] = {
+					"Normal":{
+						"Front":AnimatedSprite(pad0(self.id)+"_NF", False),
+						"Back":AnimatedSprite(pad0(self.id)+"_NB", False),
+						},
+					"Shiny":{
+						"Front":AnimatedSprite(pad0(self.id)+"_SF", False),
+						"Back":AnimatedSprite(pad0(self.id)+"_SB", False),
+						},
+					}
+					self.form = "$$"
+					if "$$" not in self.forms:
+						self.forms.append("$$")
 			except:
 				pass
 		else:
-			self.sprites = {
-			"Normal":{
-				"Front":AnimatedSprite(pad0(self.id)+"_NF"),
-				"Back":AnimatedSprite(pad0(self.id)+"_NB"),
-				},
-			"Shiny":{
-				"Front":AnimatedSprite(pad0(self.id)+"_SF"),
-				"Back":AnimatedSprite(pad0(self.id)+"_SB"),
-				},
-			}
+			try:
+				self.sprites = {
+				"Normal":{
+					"Front":AnimatedSprite(pad0(self.id)+"_NF"),
+					"Back":AnimatedSprite(pad0(self.id)+"_NB"),
+					},
+				"Shiny":{
+					"Front":AnimatedSprite(pad0(self.id)+"_SF"),
+					"Back":AnimatedSprite(pad0(self.id)+"_SB"),
+					},
+				}
+			except:
+				self.loadedSprites = False
 		
 
 	def draw(self, surface, off, scalar=1):

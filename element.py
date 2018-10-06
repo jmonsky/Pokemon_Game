@@ -1,5 +1,12 @@
+## element.py
+'''
+	Houses pokemon and move typing data
+'''
+
+from sprite import Sprite
+
 element_Advantages = {
-	"Typless":{
+	"Typeless":{
 		"SE":[],
 		"NE":[],
 		"RA":[],
@@ -154,15 +161,23 @@ element_Advantages = {
 }
 
 
+
 class Element(object):
 	def __init__(self,  *types):
 		self.types = len(types)
 		self.names = []
 		self.dictionaries = {}
+		self.sprite = {
+			"Sphere":[],
+			"Icon":[],
+			"Bar":[],
+			"Egg":[],
+		}
+		self.spritesLoaded = False
 		for T in types:
-			T = T[0].upper()+T[1:].lower()
-			self.names.append(T)
-			self.dictionaries[T] = element_Advantages[T]
+				T = T[0].upper()+T[1:].lower()
+				self.names.append(T)
+				self.dictionaries[T] = element_Advantages[T]
 
 	def __gt__(self, otherType):
 		multiplier = 1
@@ -175,6 +190,50 @@ class Element(object):
 				elif opType in self.dictionaries[myType]["NE"]:
 					multiplier *= 0.5
 		return multiplier
+
+	def draw(self, surface, pos, drawType, scale=1):
+		if self.spritesLoaded:
+			self.sprite[drawType][0].draw(surface, pos, scale)
+		else:
+			self.loadSprites()
+
+
+	def drawV(self, surface, pos, drawType, scale=1):
+		if self.spritesLoaded:
+			Y = 0
+			for s in self.sprite[drawType]:
+				s.draw(surface, (pos[0], pos[1]+Y), scale)
+				Y += s.height*scale
+		else:
+			self.loadSprites()
+
+	def drawH(self, surface, pos, drawType, scale=1):
+		if self.spritesLoaded:
+			X = 0
+			for s in self.sprite[drawType]:
+				s.draw(surface, (pos[0]+X, pos[1]), scale)
+				X += s.width*scale
+		else:
+			self.loadSprites()
+
+	def loadSprites(self):
+		if not self.spritesLoaded:
+			for T in self.names:
+				t = T.lower()
+				self.sprite["Sphere"].append(Sprite("sphere2_"+t))
+				self.sprite["Icon"].append(Sprite("sphere1_"+t))
+				self.sprite["Egg"].append(Sprite("sphere3_"+t))
+				self.sprite["Bar"].append(Sprite("type_"+t))
+
+		self.spritesLoaded = True
+
+	def unloadSprites(self):
+		self.sprite = {
+			"Sphere":[],
+			"Icon":[],
+			"Bar":[],
+			"Egg":[],
+		}
 
 	def copy(self):
 		copy = Element()
