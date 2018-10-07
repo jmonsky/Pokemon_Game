@@ -251,7 +251,12 @@ def keyPressed(key, unicode):
 				elif cmd == "levelwopen":
 					args.append(int(cond[1])) # level
 					args.append(cond[2]) # new poke
-				args.append(cond[-1])
+				elif cmd == "levelwstatdiff":
+					args.append(int(cond[1])) # level
+					args.append(cond[2]) # Stat 1
+					args.append(cond[3]) # condition (<, >, =)
+					args.append(cond[4]) # Stat 2
+				args.append(cond[-1]) # evolved pokemon
 
 				workingmon.evolution.append(args)
 
@@ -401,19 +406,24 @@ def draw(surface):
 	workingmon.typing.drawV(dex, (0,0), "Bar")
 	workingmon.typing.drawH(dex, (120,50), "Sphere", 0.2)
 	workingmon.typing.drawH(dex, (120,0), "Icon", 0.25)
-		## Sprite Settings (scale, pos)
 
-		## Base stats + stat mods
+	
+	if EDITING == "EVO COND":
+		Y = 35
+		tSize = 12
+		fullTexts = ["level,[LEVEL]", "levelwitem,[LEVEL],[ITEM]", "levelwhappiness,[HAPPINESS]", "levelwarea,[AREA]","needitem,[ITEM]","levelwgender,[LEVEL],[GENDER]", "levelwgender+item,[LEVEL],[GENDER],[ITEM]","levelwparty,[LEVEL],[PARTYMEMBER]","levelwopen,[LEVEL],[NEWPOKE]","levelwstatdiff,[LEVEL],[STAT1],[COND],[STAT2]"]
+		fullTexts = [f+",[EVOLVES-TO]" for f in fullTexts]
+		mini = len(fullTexts)
+		if len(tempText) > 1:
+			for x in range(len(fullTexts)-1,-1,-1):
+				f = fullTexts[x]
+				if tempText.split(",")[0].lower() not in f.split(",")[0].lower():
+					fullTexts.pop(x)
+		tSize = (mini-len(fullTexts)) + tSize
+		for f in fullTexts:
+			blitText(surface,f,(int(width*1/5)+50, 25+Y), color = (0,0,255), textSize = tSize)
+			Y += tSize+5
 
-		## Typing
-
-		## Ability
-
-		## Evolution
-
-		## Exp statistics, egg group
-
-		## Female rate, shinyRate, capture rate
 
 
 	## Draw dex data
@@ -421,7 +431,7 @@ def draw(surface):
 	## Draw the next / previous pokemon in the dex
 	surface.blit(dex, (width - dw, height - bh))
 	surface.blit(battle1, (0, height - bw))
-	surface.blit(battle2, (width - bw, 60))
+	surface.blit(battle2, (width - bw, 120))
 	return surface
 
 

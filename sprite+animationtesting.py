@@ -7,11 +7,12 @@ import pygame
 from pokemon import Pokemon
 pokeMANS = []
 
-for t in range(1,200):
-    test = Pokemon()
-    test.id = t
-    test.loadSprites()
-    pokeMANS.append(test)
+if True:
+    for t in range(1,200):
+        test = Pokemon()
+        test.id = t
+        test.loadSprites()
+        pokeMANS.append(test)
 if __name__ == "__main__":
     from sprite import *
     from pygame.locals import *
