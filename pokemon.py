@@ -9,6 +9,10 @@
 import random
 from math import floor
 
+import os
+
+import pygame
+
 from sprite import AnimatedSprite
 from element import Element
 from experience import checkLevel, expToLevel

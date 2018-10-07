@@ -256,6 +256,8 @@ def mouseDragged(drag, button):
 def mouseReleased(x, y, button):
 	pass
 def mousePressed(x, y, button):
+	if button == 2:
+		workingmon.cry()
 	Y = 50
 	X = 50
 	global EDITING, tempText
@@ -380,7 +382,10 @@ def draw(surface):
 if __name__ == "__main__":
 	## Screen Settings
 	size = width, height = 800, 800
+	pygame.mixer.pre_init(44100, 16, 2, 4096)
 	pygame.init()
+	
+	pygame.mixer.init()
 	pygame.display.set_mode(size, RESIZABLE)
 	pygame.display.set_caption("Pokemon Editor")
 	setIcon(255,0,0)
