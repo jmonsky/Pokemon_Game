@@ -366,7 +366,7 @@ def draw(surface):
 		"Sprite Scale (B): %.2f" % workingmon.spriteBScale,
 		"$NB$Sprite Offset (F): {0}".format(workingmon.spriteFPosition),
 		"$NB$Sprite Offset (B): {0}".format(workingmon.spriteBPosition),
-		"$NB$BASE STATS (EV Yield) [StatMod stat^Mod]",
+		"$NB$BASE STATS (EV Yield) [StatMod stat^Mod] total: %d" % (workingmon.baseStats["HP"]+workingmon.baseStats["Attack"]["Physical"]+workingmon.baseStats["Defense"]["Physical"]+workingmon.baseStats["Attack"]["Special"]+workingmon.baseStats["Defense"]["Special"]+workingmon.baseStats["Speed"]),
 		"HP:           %d (%d) [%d]" % (workingmon.baseStats["HP"], workingmon.EV_yield["HP"], workingmon.statMod["HP"]),
 		"Attack:       %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Physical"], workingmon.EV_yield["Attack"]["Physical"], workingmon.statMod["Attack"]["Physical"]),
 		"Defense:      %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Physical"], workingmon.EV_yield["Defense"]["Physical"], workingmon.statMod["Defense"]["Physical"]),
