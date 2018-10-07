@@ -76,6 +76,7 @@ class Pokedex(object):
 
 class Pokemon(object):
 	def __init__(self):
+		self.version = 1
 		## Identification pieces
 		self.name = ""
 		self.id = 0
@@ -84,7 +85,7 @@ class Pokemon(object):
 		self.form = ""
 		self.forms = []
 		self.forward = True
-		self.eggGroup = ""
+		self.eggGroup = []
 
 		## Statistics
 		self.level = 0
@@ -92,10 +93,11 @@ class Pokemon(object):
 		self.expgroup = "Slow"
 		self.hp = 0
 		self.stats = baseStatDict(1)
-		self.statMod = self.stats.copy()
-		self.baseStats = self.stats.copy()
-		self.IVS = self.stats.copy()
-		self.EVS = self.stats.copy()
+		self.statMod = baseStatDict(1)
+		self.baseStats = baseStatDict(0)
+		self.IVS = baseStatDict(0)
+		self.EVS = baseStatDict(0)
+		self.EV_yield = baseStatDict(0)
 		self.typing = Element()
 		self.nature = ""#Nature()
 		self.abilities = ""#Ability()
@@ -338,6 +340,7 @@ class Pokemon(object):
 		self.typing = poke.typing.copy()
 		self.exp = expToLevel(self, level)
 		self.expgroup = poke.expgroup
+		self.EV_yield = poke.EV_yield.copy()
 		self.expDrop = poke.expDrop
 		self.abilities = poke.abilities
 		self.ability = random.choice(self.abilities).copy() ## Needs rewrite for hiddenabilites

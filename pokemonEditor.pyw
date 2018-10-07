@@ -37,7 +37,15 @@ def loadAPoke(id):
 	with open(".\\Data\\Pokemon\\"+getPokeFile(id)+".pokedata", "r") as file:
 		workingmon = jsonpickle.decode(file.read())
 		workingmon.unloadSprites()
-	
+	try:
+		if workingmon.version == 1:
+			## Version is 1 convert to 2
+			pass
+	except:
+		## Preversion 1, converting to 1EV_yield
+		workingmon.version = 1
+		workingmon.EV_yield = baseStatDict(0)
+
 
 def keyPressed(key, unicode):
 	global tempText, EDITING, workingmon
@@ -68,7 +76,7 @@ def keyPressed(key, unicode):
 			workingmon.name = getPokeByID(workingmon.id)
 	elif key == K_ESCAPE:
 		EDITING = ""
-	elif unicode.lower() in "abcdefghijklmnopqrstuvwxyz[](),.!?{}1234567890 +-=_*/":
+	elif unicode.lower() in "abcdefghijklmnopqrstuvwxyz[](),.!?{}:;1234567890 +-=_*/":
 		if EDITING != "":
 			tempText += unicode
 		else:
@@ -131,34 +139,61 @@ def keyPressed(key, unicode):
 				workingmon.spriteBScale = newbscale
 			except:
 				pass
-		elif EDITING == "HP":
+		if EDITING in ["HP", "SPEED", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE"]:
+			temp = tempText.split(",")
+			temp2 = tempText.split(":")
+			bstat = temp[0]
+			statMod = 1
+			evyield = 0
+			if len(temp) > 1 and len(temp2) > 1:
+				temp3 = temp[1].split(":")
+				statMod = temp3[0]
+				evyield = temp2[1]
+			elif len(temp) > 1:
+				evyield = temp[1]
+			elif len(temp2) > 1:
+				statMod = temp3[0]
+
+		if EDITING == "HP":
 			try:
-				workingmon.baseStats["HP"] = int(tempText)
+				workingmon.baseStats["HP"] = int(bstat)
+				workingmon.EV_yield["HP"] = int(evyield)
+				workingmon.statMod["HP"] = int(statMod)
 			except:
 				pass
 		elif EDITING == "SPEED":
 			try:
-				workingmon.baseStats["Speed"] = int(tempText)
+				workingmon.baseStats["Speed"] = int(bstat)
+				workingmon.EV_yield["Speed"] = int(evyield)
+				workingmon.statMod["Speed"] = int(statMod)
 			except:
 				pass
 		elif EDITING == "ATTACK":
 			try:
-				workingmon.baseStats["Attack"]["Physical"] = int(tempText)
+				workingmon.baseStats["Attack"]["Physical"] = int(bstat)
+				workingmon.EV_yield["Attack"]["Physical"] = int(evyield)
+				workingmon.statMod["Attack"]["Physical"] = int(statMod)
 			except:
 				pass
 		elif EDITING == "DEFENSE":
 			try:
-				workingmon.baseStats["Defense"]["Physical"] = int(tempText)
+				workingmon.baseStats["Defense"]["Physical"] = int(bstat)
+				workingmon.EV_yield["Defense"]["Physical"] = int(evyield)
+				workingmon.statMod["Defense"]["Physical"] = int(statMod)
 			except:
 				pass
 		elif EDITING == "S ATTACK":
 			try:
-				workingmon.baseStats["Attack"]["Special"] = int(tempText)
+				workingmon.baseStats["Attack"]["Special"] = int(bstat)
+				workingmon.EV_yield["Attack"]["Special"] = int(evyield)
+				workingmon.statMod["Attack"]["Special"] = int(statMod)
 			except:
 				pass
 		elif EDITING == "S DEFENSE":
 			try:
-				workingmon.baseStats["Defense"]["Special"] = int(tempText)
+				workingmon.baseStats["Defense"]["Special"] = int(bstat)
+				workingmon.EV_yield["Defense"]["Special"] = int(evyield)
+				workingmon.statMod["Defense"]["Special"] = int(statMod)
 			except:
 				pass
 		elif EDITING == "TYPES":
@@ -220,10 +255,10 @@ def keyPressed(key, unicode):
 		elif EDITING == "EXP GROUP":
 			workingmon.expgroup = tempText[0].strip(' ').upper()+tempText[1:].strip(' ').lower()
 		elif EDITING == "EGG GROUP":
-			workingmon.eggGroup = tempText[0].strip(' ').upper()+tempText[1:].strip(' ').lower()
+			workingmon.eggGroup = tempText.lower().split(',')
 		elif EDITING == "EXP DROP":
 			try:
-				workingmon.expDro = int(tempText)
+				workingmon.expDrop = int(tempText)
 			except:
 				pass
 		elif EDITING == "FEMALE RATE":
@@ -264,7 +299,7 @@ def mousePressed(x, y, button):
 	for button in range(25):
 		if x > X and x < X+15:
 			if y > Y and y < Y+15:
-				EDITING = ["ID", "", "FORMS?", "FORMS", "FSCALE", "BSCALE", "", "", "", "HP", "SPEED", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE", "TYPES", "ABILITIES", "EVOLVES?", 
+				EDITING = ["ID", "", "FORMS?", "FORMS", "FSCALE", "BSCALE", "", "", "", "HP", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE",  "SPEED",  "TYPES", "ABILITIES", "EVOLVES?", 
 				"EVO COND", "EXP GROUP", "EXP DROP", "EGG GROUP", "FEMALE RATE", "SHINY RATE", "CAPTURE RATE"][button]
 				tempText = ""
 				return None
@@ -321,13 +356,13 @@ def draw(surface):
 		"Sprite Scale (B): %.2f" % workingmon.spriteBScale,
 		"$NB$Sprite Offset (F): {0}".format(workingmon.spriteFPosition),
 		"$NB$Sprite Offset (B): {0}".format(workingmon.spriteBPosition),
-		"$NB$BASE STATS",
-		"HP: %d" % workingmon.baseStats["HP"],
-		"Speed: %d" % workingmon.baseStats["Speed"],
-		"Attack: %d" % workingmon.baseStats["Attack"]["Physical"],
-		"Defense: %d" % workingmon.baseStats["Defense"]["Physical"],
-		"S Attack: %d" % workingmon.baseStats["Attack"]["Special"],
-		"S Defense: %d" % workingmon.baseStats["Defense"]["Special"],
+		"$NB$BASE STATS (EV Yield) [StatMod stat^Mod]",
+		"HP: %d (%d) [%d]" % (workingmon.baseStats["HP"], workingmon.EV_yield["HP"], workingmon.statMod["HP"]),
+		"Attack: %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Physical"], workingmon.EV_yield["Attack"]["Physical"], workingmon.statMod["Attack"]["Physical"]),
+		"Defense: %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Physical"], workingmon.EV_yield["Defense"]["Physical"], workingmon.statMod["Defense"]["Physical"]),
+		"S Attack: %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Special"], workingmon.EV_yield["Attack"]["Special"], workingmon.statMod["Attack"]["Special"]),
+		"S Defense: %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Special"], workingmon.EV_yield["Defense"]["Special"], workingmon.statMod["Defense"]["Special"]),
+		"Speed: %d (%d) [%d]" % (workingmon.baseStats["Speed"], workingmon.EV_yield["Speed"], workingmon.statMod["Speed"]),
 		"Types: {0}".format(workingmon.typing.names),
 		"Abilities: {0}".format(workingmon.abilities),
 		"Evolves? : %r" % workingmon.evolves,

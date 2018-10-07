@@ -234,6 +234,7 @@ class Element(object):
 			"Bar":[],
 			"Egg":[],
 		}
+		self.spritesLoaded = False
 
 	def copy(self):
 		copy = Element()
