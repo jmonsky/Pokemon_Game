@@ -49,7 +49,6 @@ def loadAPoke(id):
 
 def keyPressed(key, unicode):
 	global tempText, EDITING, workingmon
-
 	if key == K_BACKSPACE:
 		if len(tempText) > 0:
 			tempText = tempText[:-1]
@@ -95,7 +94,7 @@ def keyPressed(key, unicode):
 			elif unicode == "3":
 				workingmon.spriteFPosition = (workingmon.spriteFPosition[0]+1, workingmon.spriteFPosition[1])
 			elif unicode == "2":
-				workingmonT.spriteFPosition = (workingmon.spriteFPosition[0], workingmon.spriteFPosition[1]+1)
+				workingmon.spriteFPosition = (workingmon.spriteFPosition[0], workingmon.spriteFPosition[1]+1)
 			elif unicode == "5":
 				workingmon.spriteFPosition = (workingmon.spriteFPosition[0], workingmon.spriteFPosition[1]-1)
 			elif unicode == "j":
@@ -106,7 +105,7 @@ def keyPressed(key, unicode):
 				workingmon.spriteBPosition = (workingmon.spriteBPosition[0], workingmon.spriteBPosition[1]+1)
 			elif unicode == "i":
 				workingmon.spriteBPosition = (workingmon.spriteBPosition[0], workingmon.spriteBPosition[1]-1)
-	elif key == K_RETURN:
+	elif key == K_RETURN or key == 271:
 		if EDITING == "ID":
 			try:
 				newID = int(tempText)
