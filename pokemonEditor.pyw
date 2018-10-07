@@ -40,11 +40,15 @@ def loadAPoke(id):
 	try:
 		if workingmon.version == 1:
 			## Version is 1 convert to 2
-			pass
+			if len(workingmon.evolution) > 0:
+				workingmon.evolution = [workingmon.evolution]
+			workingmon.version = 2
+			saveCurrentPoke()
 	except:
 		## Preversion 1, converting to 1EV_yield
 		workingmon.version = 1
 		workingmon.EV_yield = baseStatDict(0)
+		saveCurrentPoke()
 
 
 def keyPressed(key, unicode):
@@ -151,7 +155,7 @@ def keyPressed(key, unicode):
 			elif len(temp) > 1:
 				evyield = temp[1]
 			elif len(temp2) > 1:
-				statMod = temp3[0]
+				statMod = temp2[1]
 
 		if EDITING == "HP":
 			try:
@@ -249,7 +253,7 @@ def keyPressed(key, unicode):
 					args.append(cond[2]) # new poke
 				args.append(cond[-1])
 
-				workingmon.evolution = args
+				workingmon.evolution.append(args)
 
 		elif EDITING == "EXP GROUP":
 			workingmon.expgroup = tempText[0].strip(' ').upper()+tempText[1:].strip(' ').lower()
@@ -275,6 +279,11 @@ def keyPressed(key, unicode):
 				workingmon.captureRate = int(tempText)
 			except:
 				pass
+		elif EDITING == "BASE HAPPY":
+			try:
+				workingmon.baseHappiness = int(tempText)
+			except:
+				pass
 		EDITING = ""
 
 
@@ -290,19 +299,21 @@ def mouseDragged(drag, button):
 def mouseReleased(x, y, button):
 	pass
 def mousePressed(x, y, button):
-	if button == 2:
-		workingmon.cry()
 	Y = 50
 	X = 50
 	global EDITING, tempText
-	for button in range(25):
+	for button in range(26):
 		if x > X and x < X+15:
 			if y > Y and y < Y+15:
+				if EDITING == "EVO COND":
+					workingmon.evolution = []
 				EDITING = ["ID", "", "FORMS?", "FORMS", "FSCALE", "BSCALE", "", "", "", "HP", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE",  "SPEED",  "TYPES", "ABILITIES", "EVOLVES?", 
-				"EVO COND", "EXP GROUP", "EXP DROP", "EGG GROUP", "FEMALE RATE", "SHINY RATE", "CAPTURE RATE"][button]
+				"EVO COND", "EXP GROUP", "EXP DROP", "EGG GROUP", "FEMALE RATE", "SHINY RATE", "CAPTURE RATE", "BASE HAPPY"][button]
 				tempText = ""
 				return None
 		Y += 20
+	else:
+		EDITING = ""
 def mouseMoved(x, y, dy, dx, button):
 	pass
 
@@ -356,12 +367,12 @@ def draw(surface):
 		"$NB$Sprite Offset (F): {0}".format(workingmon.spriteFPosition),
 		"$NB$Sprite Offset (B): {0}".format(workingmon.spriteBPosition),
 		"$NB$BASE STATS (EV Yield) [StatMod stat^Mod]",
-		"HP: %d (%d) [%d]" % (workingmon.baseStats["HP"], workingmon.EV_yield["HP"], workingmon.statMod["HP"]),
-		"Attack: %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Physical"], workingmon.EV_yield["Attack"]["Physical"], workingmon.statMod["Attack"]["Physical"]),
-		"Defense: %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Physical"], workingmon.EV_yield["Defense"]["Physical"], workingmon.statMod["Defense"]["Physical"]),
-		"S Attack: %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Special"], workingmon.EV_yield["Attack"]["Special"], workingmon.statMod["Attack"]["Special"]),
-		"S Defense: %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Special"], workingmon.EV_yield["Defense"]["Special"], workingmon.statMod["Defense"]["Special"]),
-		"Speed: %d (%d) [%d]" % (workingmon.baseStats["Speed"], workingmon.EV_yield["Speed"], workingmon.statMod["Speed"]),
+		"HP:           %d (%d) [%d]" % (workingmon.baseStats["HP"], workingmon.EV_yield["HP"], workingmon.statMod["HP"]),
+		"Attack:       %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Physical"], workingmon.EV_yield["Attack"]["Physical"], workingmon.statMod["Attack"]["Physical"]),
+		"Defense:      %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Physical"], workingmon.EV_yield["Defense"]["Physical"], workingmon.statMod["Defense"]["Physical"]),
+		"S Attack:     %d (%d) [%d]" % (workingmon.baseStats["Attack"]["Special"], workingmon.EV_yield["Attack"]["Special"], workingmon.statMod["Attack"]["Special"]),
+		"S Defense:    %d (%d) [%d]" % (workingmon.baseStats["Defense"]["Special"], workingmon.EV_yield["Defense"]["Special"], workingmon.statMod["Defense"]["Special"]),
+		"Speed:        %d (%d) [%d]" % (workingmon.baseStats["Speed"], workingmon.EV_yield["Speed"], workingmon.statMod["Speed"]),
 		"Types: {0}".format(workingmon.typing.names),
 		"Abilities: {0}".format(workingmon.abilities),
 		"Evolves? : %r" % workingmon.evolves,
@@ -369,9 +380,10 @@ def draw(surface):
 		"Experience Group: %s" % workingmon.expgroup,
 		"Experience Drop: %d" % workingmon.expDrop,
 		"Egg Group: %s" % workingmon.eggGroup,
-		"Female Rate (-1 for genderless): %.2f" % workingmon.femaleRate,
+		"Female Rate (-1 for genderless): %.3f" % workingmon.femaleRate,
 		"Shiny Rate: 1 in %d" % int(workingmon.shinyRate ** -1),
 		"Capture Rate: %d" % workingmon.captureRate,
+		"Base Happiness: %d" % workingmon.baseHappiness,
 	]
 		## Id
 	Y = 50

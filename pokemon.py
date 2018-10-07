@@ -76,7 +76,7 @@ class Pokedex(object):
 
 class Pokemon(object):
 	def __init__(self):
-		self.version = 1
+		self.version = 2
 		## Identification pieces
 		self.name = ""
 		self.id = 0
@@ -105,6 +105,7 @@ class Pokemon(object):
 		self.happiness = 0
 		self.evolution = None#EvolutionData()
 		self.expDrop = 0
+		self.baseHappiness = 0
 
 		## Personalization
 		self.nickname = ""
@@ -337,6 +338,7 @@ class Pokemon(object):
 		self.EVS = baseStatDict(0)
 		self.statMod = poke.statMod.copy()
 		self._setStats()
+		self.baseHappiness = poke.baseHappiness
 		self.typing = poke.typing.copy()
 		self.exp = expToLevel(self, level)
 		self.expgroup = poke.expgroup
