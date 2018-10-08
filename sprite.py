@@ -122,6 +122,9 @@ class AnimatedSprite(object):
 	def switchDir(self):
 		self.runStep *= -1
 
+	def setFrameSkip(self, framesToSkip):
+		self.runStep = 1*((self.runStep)/(abs(self.runStep))) + framesToSkip
+
 	def setFrameRate(self, fr):
 		self.frameRate = fr
 		self.runTime = self.frames / self.frameRate

@@ -44,6 +44,12 @@ def loadAPoke(id):
 				workingmon.evolution = [workingmon.evolution]
 			workingmon.version = 2
 			saveCurrentPoke()
+		elif workingmon.version == 2:
+			workingmon.spriteFPosition = (0,0)
+			workingmon.spriteBPosition = (0,0)
+			workingmon.spriteFScale = 1
+			workingmon.spriteBScale = 1
+			workingmon.version = 3
 	except:
 		## Preversion 1, converting to 1EV_yield
 		workingmon.version = 1
@@ -234,7 +240,7 @@ def keyPressed(key, unicode):
 				elif cmd == "levelwtime":
 					args.append(cond[1]) # time
 					try:
-						args.append(cond[2]) ## item
+						args.append(int(cond[2])) ## happiness
 					except:
 						pass
 				elif cmd == "levelwgender":
@@ -353,10 +359,11 @@ def draw(surface):
 	if not workingmon.regular:
 		workingmon.form = random.choice(workingmon.forms)
 	try:
+		tSize = int(bh / 2)
 		workingmon.forward = False
-		workingmon.draw(battle1, (int(bw/2),int(bh/2)))
+		workingmon.draw(battle1, (int(bw/2),int(bh/2)), tSize)
 		workingmon.forward = True
-		workingmon.draw(battle2, (int(bw/2), int(bh/2)))
+		workingmon.draw(battle2, (int(bw/2), int(bh/2)), tSize)
 		setIcon(0,255,0)
 	except:
 		setIcon(0,0,255)
@@ -411,7 +418,7 @@ def draw(surface):
 	if EDITING == "EVO COND":
 		Y = 35
 		tSize = 12
-		fullTexts = ["level,[LEVEL]", "levelwitem,[LEVEL],[ITEM]", "levelwhappiness,[HAPPINESS]", "levelwarea,[AREA]","needitem,[ITEM]","levelwgender,[LEVEL],[GENDER]", "levelwgender+item,[LEVEL],[GENDER],[ITEM]","levelwparty,[LEVEL],[PARTYMEMBER]","levelwopen,[LEVEL],[NEWPOKE]","levelwstatdiff,[LEVEL],[STAT1],[COND],[STAT2]"]
+		fullTexts = ["level,[LEVEL]", "levelwitem,[LEVEL],[ITEM]", "levelwhappiness,[HAPPINESS]", "levelwarea,[AREA]","needitem,[ITEM]","levelwgender,[LEVEL],[GENDER]", "levelwgender+item,[LEVEL],[GENDER],[ITEM]","levelwparty,[LEVEL],[PARTYMEMBER]","levelwopen,[LEVEL],[NEWPOKE]","levelwstatdiff,[LEVEL],[STAT1],[COND],[STAT2]","levelwtime,[TIME],{HAPPINESS}"]
 		fullTexts = [f+",[EVOLVES-TO]" for f in fullTexts]
 		mini = len(fullTexts)
 		if len(tempText) > 1:
@@ -423,7 +430,8 @@ def draw(surface):
 		for f in fullTexts:
 			blitText(surface,f,(int(width*1/5)+50, 25+Y), color = (0,0,255), textSize = tSize)
 			Y += tSize+5
-
+	elif EDITING in ["HP", "SPEED", "ATTACK", "DEFENSE", "S ATTACK", "S DEFENSE"]:
+		blitText(surface, "STAT,[EV Yield]:[STAT MOD]", (int(width*1/5)+50, 60), color=(0,0,255))
 
 
 	## Draw dex data

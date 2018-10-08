@@ -76,7 +76,7 @@ class Pokedex(object):
 
 class Pokemon(object):
 	def __init__(self):
-		self.version = 2
+		self.version = 3
 		## Identification pieces
 		self.name = ""
 		self.id = 0
@@ -261,34 +261,45 @@ class Pokemon(object):
 				self.loadedSprites = False
 		
 
-	def draw(self, surface, off, scalar=1):
+	def draw(self, surface, off, targetHeight=100):
 		if self.loadedSprites:
 			if self.regular:
 				if self.forward:
-					pos = (self.spriteFPosition[0]+off[0], self.spriteFPosition[1]+off[1])
 					if self.shiny:
-						self.sprites["Shiny"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+						spriteToUse = self.sprites["Shiny"]["Front"]
 					else:
-						self.sprites["Normal"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+						spriteToUse = self.sprites["Normal"]["Front"]
 				else:
-					pos = (self.spriteBPosition[0]+off[0], self.spriteBPosition[1]+off[1])
 					if self.shiny:
-						self.sprites["Shiny"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+						spriteToUse = self.sprites["Shiny"]["Back"]
 					else:
-						self.sprites["Normal"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+						spriteToUse = self.sprites["Normal"]["Back"]
 			else:
 				if self.forward:
-					pos = (self.spriteFPosition[0]+off[0], self.spriteFPosition[1]+off[1])
 					if self.shiny:
-						self.formSprites[self.form]["Shiny"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+						spriteToUse = self.formSprites[self.form]["Shiny"]["Front"]
 					else:
-						self.formSprites[self.form]["Normal"]["Front"].draw(surface, pos, scalar*self.spriteFScale)
+						spriteToUse = self.formSprites[self.form]["Normal"]["Front"]
 				else:
-					pos = (self.spriteBPosition[0]+off[0], self.spriteBPosition[1]+off[1])
 					if self.shiny:
-						self.formSprites[self.form]["Shiny"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+						spriteToUse = self.formSprites[self.form]["Shiny"]["Back"]
 					else:
-						self.formSprites[self.form]["Normal"]["Back"].draw(surface, pos, scalar*self.spriteBScale)
+						spriteToUse = self.formSprites[self.form]["Normal"]["Back"]
+			spriteToUse.load()
+			scaling = (targetHeight/spriteToUse.fHeight)
+			X = 0
+			Y = 0
+			if self.forward:
+				scaling *= self.spriteFScale
+				X -= self.spriteFPosition[0]
+				Y -= self.spriteFPosition[1]
+			else:
+				scaling *= self.spriteBScale
+				X -= self.spriteBPosition[0]
+				Y -= self.spriteBPosition[1]
+			X += (scaling * spriteToUse.fWidth)/2
+			Y += (scaling * spriteToUse.fHeight)/2
+			spriteToUse.draw(surface, (off[0]-X, off[1]-Y), scaling)
 		else:
 			self.loadSprites()
 
