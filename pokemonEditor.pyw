@@ -342,7 +342,6 @@ def run():
 	elif EDITING == "EVOLVES?":
 		workingmon.evolves = not workingmon.evolves
 		EDITING = ""
-		workingmon.evolution = []
 
 def draw(surface):
 	surface.fill((255,255,255))
