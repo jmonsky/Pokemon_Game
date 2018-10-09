@@ -45,7 +45,8 @@ if __name__ == "__main__":
         pokes[poke].draw(surface, (10,10))
         for POKE in pokeMANS:
             try:
-                POKE.draw(surface, (100,100))
+                #POKE.draw(surface, (100,100))
+                pass
             except:
                 pass
         pygame.display.update()

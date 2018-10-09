@@ -51,7 +51,7 @@ def loadAPoke(id):
 			workingmon.spriteBScale = 1
 			workingmon.version = 3
 	except:
-		## Preversion 1, converting to 1EV_yield
+		## Preversion 1, converting to EV_yield
 		workingmon.version = 1
 		workingmon.EV_yield = baseStatDict(0)
 		saveCurrentPoke()
