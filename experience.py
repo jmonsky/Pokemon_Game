@@ -19,8 +19,8 @@ def _fluct(n):
 EXP = {
 	"Erratic":_erratic,
 	"Fast":lambda n : (4*n**3)/5,
-	"Medium Fast":lambda n : n**3,
-	"Medium Slow":lambda n : (6/5)*n**3 - 15*n**2 + 100*n - 140,
+	"Medium fast":lambda n : n**3,
+	"Medium slow":lambda n : (6/5)*n**3 - 15*n**2 + 100*n - 140,
 	"Slow":lambda n : (5*n**3)/4,
 	"Fluctuating":_fluct,
 }

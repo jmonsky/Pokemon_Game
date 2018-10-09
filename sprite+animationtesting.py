@@ -8,10 +8,9 @@ from pokemon import Pokemon
 pokeMANS = []
 
 if True:
-    for t in range(1,200):
+    for t in range(1,649):
         test = Pokemon()
         test.id = t
-        test.loadSprites()
         pokeMANS.append(test)
 if __name__ == "__main__":
     from sprite import *
@@ -32,7 +31,7 @@ if __name__ == "__main__":
     surface = pygame.display.get_surface()
     while True:
         frame += 1
-        if frame > 120:
+        if frame > 1:
             frame = 0
             t += 1
             if t >= len(types):
@@ -45,7 +44,10 @@ if __name__ == "__main__":
         types[t].draw(surface, (100, 10))
         pokes[poke].draw(surface, (10,10))
         for POKE in pokeMANS:
-            POKE.draw(surface, (0,0))
+            try:
+                POKE.draw(surface, (100,100))
+            except:
+                pass
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == QUIT:

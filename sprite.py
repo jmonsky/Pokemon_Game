@@ -66,7 +66,9 @@ class AnimatedSprite(object):
 		if not self.loaded:
 			anim = self.source
 			inDir = ".\\Assets\\Animations\\"+anim+"\\"
-			self.sprite_sheet = [pygame.image.load(inDir+f) for f in listdir(inDir) if isfile(join(inDir, f))]
+			images = [f for f in listdir(inDir) if isfile(join(inDir, f))]
+			newImages = [anim+"-"+str(i)+".png" for i in range(len(images))]
+			self.sprite_sheet = [pygame.image.load(inDir+f) for f in newImages]
 			self.fWidth = self.sprite_sheet[0].get_width()
 			self.fHeight = self.sprite_sheet[0].get_height()
 			self.path = anim
