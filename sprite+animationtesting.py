@@ -4,25 +4,27 @@
 '''
 
 import pygame
-from pokemon import Pokemon
 pokeMANS = []
 
-if True:
-    for t in range(1,649):
-        test = Pokemon()
-        test.id = t
-        pokeMANS.append(test)
+from pokemon import Pokemon
+
+POKEMON = Pokemon()
+POKEMON.id = 1
+
+def nextDir(direction):
+    return {"up":"down", "down":"left", "left":"right", "right":"up"}[direction]
+
 if __name__ == "__main__":
     from sprite import *
     from pygame.locals import *
     pygame.init()
     pygame.display.set_mode((200,200))
-    sets = [f for f in listdir(".\\Assets\\Animations\\")]
-    pokes = []
     poke = 0
+    pokes = []
     types = []
+    sets = range(1, 722)
     for p in sets:
-        pokes.append(AnimatedSprite(p))
+        pokes.append(OverworldSprite(str(p), False))
     sets = [f for f in listdir(".\\Assets\\Sprites\\")]
     for s in sets:
         types.append(Sprite(s[:-4]))
@@ -31,7 +33,7 @@ if __name__ == "__main__":
     surface = pygame.display.get_surface()
     while True:
         frame += 1
-        if frame > 1:
+        if frame > 60:
             frame = 0
             t += 1
             if t >= len(types):
@@ -39,17 +41,19 @@ if __name__ == "__main__":
             poke += 1
             if poke >= len(pokes):
                 poke = 0
+            POKEMON.id += 1
+            if POKEMON.id >= 801:
+                POKEMON.id = 1
+            POKEMON.unloadSprites()
+
         surface = pygame.display.get_surface()
         surface.fill((255,0,255))
-        types[t].draw(surface, (100, 10))
-        pokes[poke].draw(surface, (10,10))
-        for POKE in pokeMANS:
-            try:
-                #POKE.draw(surface, (100,100))
-                pass
-            except:
-                pass
+        #types[t].draw(surface, (100, 10))
+        POKEMON.drawOverworld(surface, (50,60))
+        POKEMON.drawBattle(surface, (100,120))
+        #pokes[poke].draw(surface, (10,10))
         pygame.display.update()
+        
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
@@ -57,7 +61,8 @@ if __name__ == "__main__":
                 poke += 1
                 if poke >= len(pokes):
                     poke = 0
+                
             elif event.type == MOUSEBUTTONUP:
-                for i in pokeMANS:
-                    i.forward = not i.forward
-                    i.shiny = not i.shiny
+                POKEMON.overworldDir = nextDir(POKEMON.overworldDir)
+                POKEMON.shiny = not POKEMON.shiny
+                POKEMON.forward = not POKEMON.forward

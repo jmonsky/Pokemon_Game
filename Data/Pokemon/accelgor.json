@@ -1,0 +1,50 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Accelgor",
+    "ID": 617,
+    "Types": [
+        "Bug"
+    ],
+    "Species": "Shell Out Pokemon",
+    "Height": 0.8,
+    "Weight": 25.3,
+    "Abilities": [
+        "Hydration",
+        "Sticky Hold",
+        "Unburden"
+    ],
+    "Evolution": [],
+    "Forms": {},
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 80,
+        "Attack": 70,
+        "Defense": 40,
+        "Special Attack": 100,
+        "Special Defense": 60,
+        "Speed": 145
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 0,
+        "Defense": 0,
+        "Special Attack": 0,
+        "Special Defense": 0,
+        "Speed": 2
+    },
+    "Capture Rate": 75,
+    "Base Friendship": 70,
+    "Base Exp": 173,
+    "Experience Group": "Medium Fast",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [
+        "Bug"
+    ],
+    "Female Rate": 0.5,
+    "Egg Cycles": 15,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

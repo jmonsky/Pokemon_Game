@@ -1,0 +1,56 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Abra",
+    "ID": 63,
+    "Types": [
+        "Psychic"
+    ],
+    "Species": "Psy Pokemon",
+    "Height": 0.9,
+    "Weight": 19.5,
+    "Abilities": [
+        "Synchronize",
+        "Inner Focus",
+        "Magic Guard"
+    ],
+    "Evolution": [
+        [
+            "level",
+            16,
+            "kadabra"
+        ]
+    ],
+    "Forms": {},
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 25,
+        "Attack": 20,
+        "Defense": 15,
+        "Special Attack": 105,
+        "Special Defense": 55,
+        "Speed": 90
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 0,
+        "Defense": 0,
+        "Special Attack": 1,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "Capture Rate": 200,
+    "Base Friendship": 70,
+    "Base Exp": 62,
+    "Experience Group": "Medium Slow",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [
+        "Human-Like"
+    ],
+    "Female Rate": 0.25,
+    "Egg Cycles": 20,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

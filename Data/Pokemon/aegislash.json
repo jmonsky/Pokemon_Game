@@ -1,0 +1,70 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Aerodactyl",
+    "ID": 142,
+    "Types": [
+        "Steel",
+        "Ghost"
+    ],
+    "Species": "Royal Sword Pokemon",
+    "Height": 1.7,
+    "Weight": 0,
+    "Abilities": [
+        "Stance Change"
+    ],
+    "Evolution": [],
+    "Forms": {
+        "Blade Forme": "Default",
+        "Shield Forme": {
+            "Activation": "Ability",
+            "BaseStats": {
+                "HP": 60,
+                "Attack": 50,
+                "Defense": 150,
+                "Special Attack": 50,
+                "Special Defense": 150,
+                "Speed": 60
+            },
+            "EV Yield": {
+                "HP": 0,
+                "Attack": 0,
+                "Defense": 2,
+                "Special Attack": 0,
+                "Special Defense": 1,
+                "Speed": 0
+            }
+        }
+    },
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 60,
+        "Attack": 150,
+        "Defense": 50,
+        "Special Attack": 150,
+        "Special Defense": 50,
+        "Speed": 60
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 2,
+        "Defense": 0,
+        "Special Attack": 1,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 234,
+    "Experience Group": "Medium Fast",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [
+        "Mineral"
+    ],
+    "Female Rate": 0.5,
+    "Egg Cycles": 20,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

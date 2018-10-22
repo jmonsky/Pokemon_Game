@@ -1,0 +1,51 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Abomasnow",
+    "ID": 460,
+    "Types": [
+        "Grass",
+        "Ice"
+    ],
+    "Species": "Frost Tree Pokemon",
+    "Height": 2.2,
+    "Weight": 165.5,
+    "Abilities": [
+        "Snow Warning",
+        "Soundproof"
+    ],
+    "Evolution": [],
+    "Forms": {},
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 90,
+        "Attack": 92,
+        "Defense": 75,
+        "Special Attack": 92,
+        "Special Defense": 85,
+        "Speed": 60
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 1,
+        "Defense": 0,
+        "Special Attack": 1,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "Capture Rate": 60,
+    "Base Friendship": 70,
+    "Base Exp": 173,
+    "Experience Group": "Slow",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [
+        "Grass",
+        "Monster"
+    ],
+    "Female Rate": 0.5,
+    "Egg Cycles": 20,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

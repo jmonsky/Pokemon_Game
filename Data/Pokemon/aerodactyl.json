@@ -1,0 +1,51 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Aerodactyl",
+    "ID": 142,
+    "Types": [
+        "Rock",
+        "Flying"
+    ],
+    "Species": "Fossil Pokemon",
+    "Height": 1.8,
+    "Weight": 59,
+    "Abilities": [
+        "Rock Head",
+        "Pressure",
+        "Unnerve"
+    ],
+    "Evolution": [],
+    "Forms": {},
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 80,
+        "Attack": 105,
+        "Defense": 65,
+        "Special Attack": 60,
+        "Special Defense": 75,
+        "Speed": 130
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 0,
+        "Defense": 0,
+        "Special Attack": 0,
+        "Special Defense": 0,
+        "Speed": 2
+    },
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 180,
+    "Experience Group": "Slow",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [
+        "Flying"
+    ],
+    "Female Rate": 0.125,
+    "Egg Cycles": 35,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

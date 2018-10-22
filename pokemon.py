@@ -13,7 +13,7 @@ import os
 
 import pygame
 
-from sprite import AnimatedSprite
+from sprite import OverworldSprite, BattleSprite
 from element import Element
 from experience import checkLevel, expToLevel
 
@@ -82,9 +82,10 @@ class Pokemon(object):
 		self.id = 0
 		self.shiny = False
 		self.gender = "Attack Helicopter"
-		self.form = ""
-		self.forms = []
+		self.forms = {}
 		self.forward = True
+		self.overworldDir = "down"
+		self.diffFemale = False
 		self.eggGroup = []
 
 		## Statistics
@@ -126,23 +127,14 @@ class Pokemon(object):
 		self.captureRate = 0
 
 		## Other Junk
-		self.regular = True
 		self.loadedSprites = False
-		self.formSprites = {}
-		self.sprites = {
-		"Normal":{
-			"Front":None,
-			"Back":None,
-			},
-		"Shiny":{
-			"Front":None,
-			"Back":None,
-			},
-		}
+		self.battleSprite = None
+		self.overworldSprite = None
 		self.spriteFPosition = (0,0)
 		self.spriteBPosition = (0,0)
 		self.spriteFScale = 1
 		self.spriteBScale = 1
+		self.spriteOScale = 1
 		#self.overworldSprite = None#Sprite() UNSURE ABOUT FOR NOW
 		self.introAnimation = None#Animation()
 		self.deathAnimation = None#Animation()
@@ -190,17 +182,8 @@ class Pokemon(object):
 		return STATDELTA
 
 	def unloadSprites(self):
-		self.sprites = {
-		"Normal":{
-			"Front":None,
-			"Back":None,
-			},
-		"Shiny":{
-			"Front":None,
-			"Back":None,
-			},
-		}
-		self.formSprites = {}
+		self.battleSprite = None
+		self.overworldSprite = None
 		self.typing.unloadSprites()
 		self.loadedSprites = False
 
@@ -208,85 +191,13 @@ class Pokemon(object):
 	def loadSprites(self):
 		self.loadedSprites = True
 		self.typing.loadSprites()
-		def pad0(num):
-			n = str(num)
-			if len(n) == 1:
-				n = "00"+n
-			elif len(n) == 2:
-				n = "0"+n
-			return n
-		if not self.regular:
-			for i in self.forms:
-				if i != "$$":
-					self.formSprites[i] = {
-					"Normal":{
-						"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NF"),
-						"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_NB"),
-						},
-					"Shiny":{
-						"Front":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SF"),
-						"Back":AnimatedSprite(pad0(self.id)+"_"+i.upper()+"_SB"),
-						},
-					}
-			try:
-				if "$$" not in self.forms or "$$" not in self.formSprites:
-					self.formSprites["$$"] = {
-					"Normal":{
-						"Front":AnimatedSprite(pad0(self.id)+"_NF", False),
-						"Back":AnimatedSprite(pad0(self.id)+"_NB", False),
-						},
-					"Shiny":{
-						"Front":AnimatedSprite(pad0(self.id)+"_SF", False),
-						"Back":AnimatedSprite(pad0(self.id)+"_SB", False),
-						},
-					}
-					self.form = "$$"
-					if "$$" not in self.forms:
-						self.forms.append("$$")
-			except:
-				pass
-		else:
-			try:
-				self.sprites = {
-				"Normal":{
-					"Front":AnimatedSprite(pad0(self.id)+"_NF"),
-					"Back":AnimatedSprite(pad0(self.id)+"_NB"),
-					},
-				"Shiny":{
-					"Front":AnimatedSprite(pad0(self.id)+"_SF"),
-					"Back":AnimatedSprite(pad0(self.id)+"_SB"),
-					},
-				}
-			except:
-				self.loadedSprites = False
+		self.overworldSprite = OverworldSprite(str(self.id), False)
+		self.battleSprite = BattleSprite(str(self.id), False)
 		
 
-	def draw(self, surface, off, targetHeight=100):
+	def drawBattle(self, surface, off, targetHeight=100):
 		if self.loadedSprites:
-			if self.regular:
-				if self.forward:
-					if self.shiny:
-						spriteToUse = self.sprites["Shiny"]["Front"]
-					else:
-						spriteToUse = self.sprites["Normal"]["Front"]
-				else:
-					if self.shiny:
-						spriteToUse = self.sprites["Shiny"]["Back"]
-					else:
-						spriteToUse = self.sprites["Normal"]["Back"]
-			else:
-				if self.forward:
-					if self.shiny:
-						spriteToUse = self.formSprites[self.form]["Shiny"]["Front"]
-					else:
-						spriteToUse = self.formSprites[self.form]["Normal"]["Front"]
-				else:
-					if self.shiny:
-						spriteToUse = self.formSprites[self.form]["Shiny"]["Back"]
-					else:
-						spriteToUse = self.formSprites[self.form]["Normal"]["Back"]
-			spriteToUse.load()
-			scaling = (targetHeight/spriteToUse.fHeight)
+			scaling = (targetHeight/self.battleSprite.height)
 			X = 0
 			Y = 0
 			if self.forward:
@@ -297,9 +208,31 @@ class Pokemon(object):
 				scaling *= self.spriteBScale
 				X -= self.spriteBPosition[0]
 				Y -= self.spriteBPosition[1]
-			X += (scaling * spriteToUse.fWidth)/2
-			Y += (scaling * spriteToUse.fHeight)/2
-			spriteToUse.draw(surface, (off[0]-X, off[1]-Y), scaling)
+			X += (scaling * self.battleSprite.width)/2
+			Y += (scaling * self.battleSprite.height)/2
+			if self.forward:
+				self.battleSprite.dir = "Front"
+			else:
+				self.battleSprite.dir = "Back"
+			self.battleSprite.shiny = self.shiny
+			self.battleSprite.draw(surface, (off[0]-X, off[1]-Y), scaling)
+		else:
+			self.loadSprites()
+
+	def drawOverworld(self, surface, off, targetSize=64):
+		if self.loadedSprites:
+			scaling = (targetSize/self.overworldSprite.fHeight)
+			X = 0
+			Y = 0
+			scaling *= self.spriteOScale
+			X += (scaling * self.overworldSprite.fWidth)/2
+			Y += (scaling * self.overworldSprite.fHeight)/2
+			self.overworldSprite.dir = self.overworldDir
+			if self.shiny:
+				self.overworldSprite.TYPE = "Shiny"
+			else:
+				self.overworldSprite.TYPE = "Regular"
+			self.overworldSprite.draw(surface, (off[0]-X, off[1]-Y), scaling)
 		else:
 			self.loadSprites()
 
@@ -326,12 +259,7 @@ class Pokemon(object):
 				else:
 					self.gender = "Male"
 			self.gender = "Genderless"
-		if poke.regular:
-			self.form = "Normal"
-			self.forms = []
-		else:
-			self.form = poke.forms[0]
-			self.forms = poke.forms.copy()
+		self.forms = poke.forms.copy()
 
 		## Copy & Create Statistics
 		self.level = level
@@ -360,11 +288,18 @@ class Pokemon(object):
 
 		self.evolution = poke.evolution.copy()
 
+		self.diffFemale = poke.diffFemale
+
+		self.spriteOScale = poke.spriteOScale
+		self.spriteBScale = poke.spriteBScale
+		self.spriteFScale = poke.spriteFScale
+
+		self.spriteFPosition = poke.spriteFPosition
+		self.spriteBPosition = poke.spriteBPosition
+
 		self.femaleRate = poke.femaleRate
 		self.shinyRate = poke.shinyRate
 		self.captureRate = poke.captureRate
-
-		self.regular = poke.regular
 
 		self.introAnimation = poke.introAnimation#.copy()
 		self.deathAnimation = poke.deathAnimation#.copy()

@@ -1,0 +1,50 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Absol",
+    "ID": 359,
+    "Types": [
+        "Dark"
+    ],
+    "Species": "Disaster Pokemon",
+    "Height": 1.2,
+    "Weight": 47,
+    "Abilities": [
+        "Pressure",
+        "Super Luck",
+        "Justified"
+    ],
+    "Evolution": [],
+    "Forms": {},
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 65,
+        "Attack": 130,
+        "Defense": 60,
+        "Special Attack": 75,
+        "Special Defense": 60,
+        "Speed": 75
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 2,
+        "Defense": 0,
+        "Special Attack": 0,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "Capture Rate": 30,
+    "Base Friendship": 35,
+    "Base Exp": 163,
+    "Experience Group": "Medium Slow",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [
+        "Field"
+    ],
+    "Female Rate": 0.5,
+    "Egg Cycles": 25,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

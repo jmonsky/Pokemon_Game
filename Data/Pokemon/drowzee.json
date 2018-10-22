@@ -1,0 +1,42 @@
+{
+    "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
+    "Name": "Drowzee",
+    "ID": 96,
+    "Types": [],
+    "Species": "",
+    "Height": 0,
+    "Weight": 0,
+    "Abilities": [],
+    "Evolution": [],
+    "Forms": {},
+    "**********BASE STATS**********": "**********BASE STATS**********",
+    "BaseStats": {
+        "HP": 0,
+        "Attack": 0,
+        "Defense": 0,
+        "Special Attack": 0,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 0,
+        "Defense": 0,
+        "Special Attack": 0,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "Capture Rate": 0,
+    "Base Friendship": 0,
+    "Base Exp": 0,
+    "Experience Group": "",
+    "**********BREEDING**********": "**********BREEDING**********",
+    "Egg Groups": [],
+    "Female Rate": 0.5,
+    "Egg Cycles": 0,
+    "**********SPRITES**********": "**********SPRITES**********",
+    "SpriteFScale": 1,
+    "SpriteOScale": 1,
+    "SpriteBScale": 1
+}

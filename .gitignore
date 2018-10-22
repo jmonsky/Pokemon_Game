@@ -4,8 +4,5 @@
 
 build/*
 *.sublime-workspace
-*.png
-*.mp3
 *.pyc
 *.zip
-*.ogg
