@@ -2,21 +2,26 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Araquanid",
     "ID": 752,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Water Bug"
+    ],
+    "Species": "Water Bubble Pokemon",
+    "Height": 1.8,
+    "Weight": 82,
+    "Abilities": [
+        "Water Bubble",
+        "Water Absorb"
+    ],
     "Evolution": [],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 68,
+        "Attack": 70,
+        "Defense": 92,
+        "Special Attack": 50,
+        "Special Defense": 132,
+        "Speed": 42
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
@@ -24,17 +29,20 @@
         "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
-        "Special Defense": 0,
+        "Special Defense": 2,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 100,
+    "Base Friendship": 70,
+    "Base Exp": 159,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Bug",
+        "Water 1"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 15,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

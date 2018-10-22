@@ -250,7 +250,7 @@ class Pokemon(object):
 		if random.random() < poke.shinyRate:
 			self.shiny = True
 		genderRand = random.random()
-		if self.femaleRate == -1:
+		if self.femaleRate != -1:
 			if genderRand < 1/8192:
 				pass
 			else:
@@ -258,6 +258,7 @@ class Pokemon(object):
 					self.gender = "Female"
 				else:
 					self.gender = "Male"
+		else:
 			self.gender = "Genderless"
 		self.forms = poke.forms.copy()
 

@@ -2,39 +2,56 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Amaura",
     "ID": 698,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Rock",
+        "Ice"
+    ],
+    "Species": "Tundra Pokemon",
+    "Height": 1.3,
+    "Weight": 25.2,
+    "Abilities": [
+        "Refrigerate",
+        "Snow Warning"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            [
+                39,
+                "Nighttime"
+            ],
+            "Aurorus"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 77,
+        "Attack": 59,
+        "Defense": 50,
+        "Special Attack": 67,
+        "Special Defense": 63,
+        "Speed": 46
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
-        "HP": 0,
+        "HP": 1,
         "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 72,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Monster"
+    ],
+    "Female Rate": 0.125,
+    "Egg Cycles": 30,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

@@ -2,39 +2,53 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Anorith",
     "ID": 347,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Rock",
+        "Bug"
+    ],
+    "Species": "Old Shrimp Pokemon",
+    "Height": 0.7,
+    "Weight": 12.5,
+    "Abilities": [
+        "Battle Armor",
+        "Swift Swim"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            40,
+            "Armaldo"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 45,
+        "Attack": 95,
+        "Defense": 50,
+        "Special Attack": 40,
+        "Special Defense": 50,
+        "Speed": 75
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
-        "Attack": 0,
+        "Attack": 1,
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 71,
+    "Experience Group": "Erratic",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Water 3"
+    ],
+    "Female Rate": 0.125,
+    "Egg Cycles": 30,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

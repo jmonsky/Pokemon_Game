@@ -2,39 +2,53 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Bayleef",
     "ID": 153,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Grass"
+    ],
+    "Species": "Leaf Pokemon",
+    "Height": 1.2,
+    "Weight": 15.8,
+    "Abilities": [
+        "Overgrow",
+        "Leaf Guard"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            32,
+            "Meganium"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 60,
+        "Attack": 62,
+        "Defense": 80,
+        "Special Attack": 63,
+        "Special Defense": 80,
+        "Speed": 60
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
-        "Defense": 0,
+        "Defense": 1,
         "Special Attack": 0,
-        "Special Defense": 0,
+        "Special Defense": 1,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 142,
+    "Experience Group": "Medium Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Grass",
+        "Monster"
+    ],
+    "Female Rate": 0.125,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

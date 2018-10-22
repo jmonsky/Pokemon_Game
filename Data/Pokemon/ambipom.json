@@ -2,21 +2,27 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Ambipom",
     "ID": 424,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Normal"
+    ],
+    "Species": "Long Tail Pokemon",
+    "Height": 1.2,
+    "Weight": 20.3,
+    "Abilities": [
+        "Technician",
+        "Pickup",
+        "Skill Link"
+    ],
     "Evolution": [],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 75,
+        "Attack": 100,
+        "Defense": 66,
+        "Special Attack": 60,
+        "Special Defense": 66,
+        "Speed": 115
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
@@ -25,16 +31,18 @@
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
-        "Speed": 0
+        "Speed": 2
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 100,
+    "Base Exp": 169,
+    "Experience Group": "Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Field"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

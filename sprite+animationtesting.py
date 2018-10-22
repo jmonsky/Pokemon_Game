@@ -33,7 +33,7 @@ if __name__ == "__main__":
     surface = pygame.display.get_surface()
     while True:
         frame += 1
-        if frame > 60:
+        if frame > 1:
             frame = 0
             t += 1
             if t >= len(types):

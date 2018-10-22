@@ -1,7 +1,7 @@
 {
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
-    "Name": "Aerodactyl",
-    "ID": 142,
+    "Name": "Aeigislash",
+    "ID": 681,
     "Types": [
         "Steel",
         "Ghost"
@@ -17,6 +17,8 @@
         "Blade Forme": "Default",
         "Shield Forme": {
             "Activation": "Ability",
+            "BattleSprite": "",
+            "OverworldSprite": "-1",
             "BaseStats": {
                 "HP": 60,
                 "Attack": 50,

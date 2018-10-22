@@ -2,21 +2,27 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Articuno",
     "ID": 144,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Ice",
+        "Flying"
+    ],
+    "Species": "Freeze Pokemon",
+    "Height": 1.7,
+    "Weight": 55.4,
+    "Abilities": [
+        "Pressure",
+        "Snow Cloak"
+    ],
     "Evolution": [],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 90,
+        "Attack": 85,
+        "Defense": 100,
+        "Special Attack": 95,
+        "Special Defense": 125,
+        "Speed": 85
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
@@ -24,17 +30,19 @@
         "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
-        "Special Defense": 0,
+        "Special Defense": 3,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 3,
+    "Base Friendship": 35,
+    "Base Exp": 261,
+    "Experience Group": "Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Undiscovered"
+    ],
+    "Female Rate": -1,
+    "Egg Cycles": 80,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

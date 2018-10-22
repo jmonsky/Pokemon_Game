@@ -2,21 +2,27 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Bellossom",
     "ID": 182,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Grass",
+        "Fariy"
+    ],
+    "Species": "Flower Pokemon",
+    "Height": 0.4,
+    "Weight": 5.8,
+    "Abilities": [
+        "Chlorophyll",
+        "Healer"
+    ],
     "Evolution": [],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 75,
+        "Attack": 80,
+        "Defense": 95,
+        "Special Attack": 90,
+        "Special Defense": 100,
+        "Speed": 50
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
@@ -24,17 +30,20 @@
         "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
-        "Special Defense": 0,
+        "Special Defense": 3,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 221,
+    "Experience Group": "Medium Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Grass",
+        "Fairy"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

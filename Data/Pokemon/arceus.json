@@ -2,39 +2,234 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Arceus",
     "ID": 493,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Normal"
+    ],
+    "Species": "Alpha Pokemon",
+    "Height": 3.2,
+    "Weight": 320,
+    "Abilities": [
+        "Multitype"
+    ],
     "Evolution": [],
-    "Forms": {},
+    "Forms": {
+        "Normal": "Default",
+        "Water": {
+            "Activation": [
+                "Hold Item",
+                "Water Plate"
+            ],
+            "Types": [
+                "Water"
+            ],
+            "OverworldSprite": "-water",
+            "BattleSprite": "-10"
+        },
+        "Steel": {
+            "Activation": [
+                "Hold Item",
+                "Steel Plate"
+            ],
+            "Types": [
+                "Steel"
+            ],
+            "OverworldSprite": "-steel",
+            "BattleSprite": "-8"
+        },
+        "Rock": {
+            "Activation": [
+                "Hold Item",
+                "Rock Plate"
+            ],
+            "Types": [
+                "Rock"
+            ],
+            "OverworldSprite": "-rock",
+            "BattleSprite": "-5"
+        },
+        "Psychic": {
+            "Activation": [
+                "Hold Item",
+                "Psychic Plate"
+            ],
+            "Types": [
+                "Psychic"
+            ],
+            "OverworldSprite": "-psychic",
+            "BattleSprite": "-13"
+        },
+        "Poison": {
+            "Activation": [
+                "Hold Item",
+                "Poison Plate"
+            ],
+            "Types": [
+                "Poison"
+            ],
+            "OverworldSprite": "-poison",
+            "BattleSprite": "-3"
+        },
+        "Ice": {
+            "Activation": [
+                "Hold Item",
+                "Ice Plate"
+            ],
+            "Types": [
+                "Ice"
+            ],
+            "OverworldSprite": "-ice",
+            "BattleSprite": "-14"
+        },
+        "Fairy": {
+            "Activation": [
+                "Hold Item",
+                "Fairy Plate"
+            ],
+            "Types": [
+                "Fairy"
+            ],
+            "OverworldSprite": "",
+            "BattleSprite": ""
+        },
+        "Ground": {
+            "Activation": [
+                "Hold Item",
+                "Ground Plate"
+            ],
+            "Types": [
+                "Ground"
+            ],
+            "OverworldSprite": "-ground",
+            "BattleSprite": "-4"
+        },
+        "Grass": {
+            "Activation": [
+                "Hold Item",
+                "Grass Plate"
+            ],
+            "Types": [
+                "Grass"
+            ],
+            "OverworldSprite": "-grass",
+            "BattleSprite": "-11"
+        },
+        "Ghost": {
+            "Activation": [
+                "Hold Item",
+                "Ghost Plate"
+            ],
+            "Types": [
+                "Ghost"
+            ],
+            "OverworldSprite": "-ghost",
+            "BattleSprite": "-7"
+        },
+        "Flying": {
+            "Activation": [
+                "Hold Item",
+                "Flying Plate"
+            ],
+            "Types": [
+                "Flying"
+            ],
+            "OverworldSprite": "-flying",
+            "BattleSprite": "-2"
+        },
+        "Fire": {
+            "Activation": [
+                "Hold Item",
+                "Fire Plate"
+            ],
+            "Types": [
+                "Fire"
+            ],
+            "OverworldSprite": "-fire",
+            "BattleSprite": "-9"
+        },
+        "Fighting": {
+            "Activation": [
+                "Hold Item",
+                "Fighting Plate"
+            ],
+            "Types": [
+                "Fighting"
+            ],
+            "OverworldSprite": "-fighting",
+            "BattleSprite": "-1"
+        },
+        "Electric": {
+            "Activation": [
+                "Hold Item",
+                "Electric Plate"
+            ],
+            "Types": [
+                "Electric"
+            ],
+            "OverworldSprite": "-electric",
+            "BattleSprite": "-12"
+        },
+        "Dragon": {
+            "Activation": [
+                "Hold Item",
+                "Dragon Plate"
+            ],
+            "Types": [
+                "Dragon"
+            ],
+            "OverworldSprite": "-dragon",
+            "BattleSprite": "-15"
+        },
+        "Dark": {
+            "Activation": [
+                "Hold Item",
+                "Dark Plate"
+            ],
+            "Types": [
+                "Dark"
+            ],
+            "OverworldSprite": "-dark",
+            "BattleSprite": "-16"
+        },
+        "Bug": {
+            "Activation": [
+                "Hold Item",
+                "Bug Plate"
+            ],
+            "Types": [
+                "Bug"
+            ],
+            "OverworldSprite": "-bug",
+            "BattleSprite": "-6"
+        }
+    },
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 120,
+        "Attack": 120,
+        "Defense": 120,
+        "Special Attack": 120,
+        "Special Defense": 120,
+        "Speed": 120
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
-        "HP": 0,
+        "HP": 3,
         "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
+    "Capture Rate": 3,
     "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Base Exp": 324,
+    "Experience Group": "Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Undiscovered"
+    ],
+    "Female Rate": -1,
+    "Egg Cycles": 120,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,
