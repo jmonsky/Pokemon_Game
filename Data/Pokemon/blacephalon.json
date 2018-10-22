@@ -1,50 +1,47 @@
 {
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
-    "Name": "Breloom",
-    "ID": 286,
+    "Name": "Blacephalon",
+    "ID": 806,
     "Types": [
-        "Grass",
-        "Fighting"
+        "Fire",
+        "Ghost"
     ],
-    "Species": "Mushroom Pokemon",
-    "Height": 1.2,
-    "Weight": 39.2,
+    "Species": "Fireworks Pokemon",
+    "Height": 1.8,
+    "Weight": 13,
     "Abilities": [
-        "Effect Spore",
-        "Poison Heal",
-        "Technician"
+        "Beast Boost"
     ],
     "Evolution": [],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 60,
-        "Attack": 130,
-        "Defense": 80,
-        "Special Attack": 60,
-        "Special Defense": 60,
-        "Speed": 70
+        "HP": 53,
+        "Attack": 127,
+        "Defense": 53,
+        "Special Attack": 151,
+        "Special Defense": 79,
+        "Speed": 107
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
-        "Attack": 2,
+        "Attack": 0,
         "Defense": 0,
-        "Special Attack": 0,
+        "Special Attack": 3,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 90,
-    "Base Friendship": 70,
-    "Base Exp": 161,
-    "Experience Group": "Fluctuating",
+    "Capture Rate": 30,
+    "Base Friendship": 0,
+    "Base Exp": 257,
+    "Experience Group": "Slow",
     "**********BREEDING**********": "**********BREEDING**********",
     "Egg Groups": [
-        "Fairy",
-        "Grass"
+        "Undiscovered"
     ],
-    "Female Rate": 0.5,
-    "Egg Cycles": 15,
+    "Female Rate": -1,
+    "Egg Cycles": 120,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

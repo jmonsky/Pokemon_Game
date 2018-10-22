@@ -2,39 +2,52 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Clauncher",
     "ID": 692,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Water"
+    ],
+    "Species": "Water Gun Pokemon",
+    "Height": 0.5,
+    "Weight": 8.3,
+    "Abilities": [
+        "Mega Launcher"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            37,
+            "Clawitzer"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 50,
+        "Attack": 53,
+        "Defense": 62,
+        "Special Attack": 58,
+        "Special Defense": 63,
+        "Speed": 44
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
         "Defense": 0,
-        "Special Attack": 0,
+        "Special Attack": 1,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 225,
+    "Base Friendship": 70,
+    "Base Exp": 66,
+    "Experience Group": "Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Water 1",
+        "Water 3"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 15,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

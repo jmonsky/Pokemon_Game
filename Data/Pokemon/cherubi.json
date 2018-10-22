@@ -2,39 +2,52 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Cherubi",
     "ID": 420,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Grass"
+    ],
+    "Species": "Chery Pokemon",
+    "Height": 0.4,
+    "Weight": 3.3,
+    "Abilities": [
+        "Chlorophyll"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            25,
+            "Cherrim"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 45,
+        "Attack": 35,
+        "Defense": 45,
+        "Special Attack": 62,
+        "Special Defense": 53,
+        "Speed": 35
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
         "Defense": 0,
-        "Special Attack": 0,
+        "Special Attack": 1,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 190,
+    "Base Friendship": 70,
+    "Base Exp": 55,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Fairy",
+        "Grass"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

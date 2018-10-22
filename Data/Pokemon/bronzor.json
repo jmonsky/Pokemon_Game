@@ -2,39 +2,54 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Bronzor",
     "ID": 436,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Steel",
+        "Psychic"
+    ],
+    "Species": "Bronze Pokemon",
+    "Height": 0.5,
+    "Weight": 60.5,
+    "Abilities": [
+        "Levitate",
+        "Heatproof",
+        "Heavy Metal"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            33,
+            "Bronzong"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 57,
+        "Attack": 24,
+        "Defense": 86,
+        "Special Attack": 24,
+        "Special Defense": 86,
+        "Speed": 23
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
-        "Defense": 0,
+        "Defense": 1,
         "Special Attack": 0,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 255,
+    "Base Friendship": 70,
+    "Base Exp": 60,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Mineral"
+    ],
+    "Female Rate": -1,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

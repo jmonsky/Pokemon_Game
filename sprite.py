@@ -69,19 +69,19 @@ class BattleSprite(object):
 			try:
 				self.images["Shiny Front"] = pygame.image.load(path+img+"s.png")
 			except:
-				pass
+				self.images["Shiny Front"] = pygame.image.load(path+"0.png")
 			try:
 				self.images["Shiny Back"] = pygame.image.load(path+img+"sb.png")
 			except:
-				pass
+				self.images["Shiny Back"] = pygame.image.load(path+"0.png")
 			try:
 				self.images["Regular Front"] = pygame.image.load(path+img+".png")
 			except:
-				pass
+				self.images["Regular Front"] = pygame.image.load(path+"0.png")
 			try:
 				self.images["Regular Back"] = pygame.image.load(path+img+"b.png")
 			except:
-				pass
+				self.images["Regular Back"] = pygame.image.load(path+"0.png")
 			try:
 				self.width = self.images["Regular Front"].get_width()
 				self.height = self.images["Regular Front"].get_height()
@@ -119,6 +119,7 @@ class OverworldSprite(object):
 		self.dir = "up"
 		self.exists = True
 		self.TYPE = "Regular"
+		self.hasFemale = False
 		if not lazyLoad:
 			self.load()
 
@@ -141,12 +142,14 @@ class OverworldSprite(object):
 				pass
 			try:
 				self.sprite_sheets["Female"] = pygame.image.load(inDir+"f.png")
+				self.hasFemale = True
 			except:
-				pass
+				self.hasFemale = False
 			try:
 				self.sprite_sheets["FemaleShiny"] = pygame.image.load(inDir+"fs.png")
+				self.hasFemale = True
 			except:
-				pass
+				self.hasFemale = False
 			try:
 				self.fWidth = self.sprite_sheets["Regular"].get_width()/4
 				self.fHeight = self.sprite_sheets["Regular"].get_height()/4
@@ -167,6 +170,8 @@ class OverworldSprite(object):
 
 	def get_image(self, frame):
 		if self.loaded and self.exists:
+			if self.TYPE in ["FemaleShiny", "Female"] and self.hasFemale == False:
+				self.TYPE = {"FemaleShiny":"Shiny", "Female":"Regular"}[self.TYPE]
 			image = pygame.Surface((self.fWidth, self.fHeight), SRCALPHA)
 
 			positions = {

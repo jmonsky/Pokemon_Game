@@ -1,50 +1,40 @@
 {
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
-    "Name": "Breloom",
-    "ID": 286,
-    "Types": [
-        "Grass",
-        "Fighting"
-    ],
-    "Species": "Mushroom Pokemon",
-    "Height": 1.2,
-    "Weight": 39.2,
-    "Abilities": [
-        "Effect Spore",
-        "Poison Heal",
-        "Technician"
-    ],
+    "Name": "Poipole",
+    "ID": 803,
+    "Types": [],
+    "Species": "",
+    "Height": 0,
+    "Weight": 0,
+    "Abilities": [],
     "Evolution": [],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 60,
-        "Attack": 130,
-        "Defense": 80,
-        "Special Attack": 60,
-        "Special Defense": 60,
-        "Speed": 70
-    },
-    "**********TRAINING**********": "**********TRAINING**********",
-    "EV Yeld": {
         "HP": 0,
-        "Attack": 2,
+        "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 90,
-    "Base Friendship": 70,
-    "Base Exp": 161,
-    "Experience Group": "Fluctuating",
+    "**********TRAINING**********": "**********TRAINING**********",
+    "EV Yeld": {
+        "HP": 0,
+        "Attack": 0,
+        "Defense": 0,
+        "Special Attack": 0,
+        "Special Defense": 0,
+        "Speed": 0
+    },
+    "Capture Rate": 0,
+    "Base Friendship": 0,
+    "Base Exp": 0,
+    "Experience Group": "",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [
-        "Fairy",
-        "Grass"
-    ],
+    "Egg Groups": [],
     "Female Rate": 0.5,
-    "Egg Cycles": 15,
+    "Egg Cycles": 0,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

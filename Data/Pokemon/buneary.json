@@ -2,21 +2,33 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Buneary",
     "ID": 427,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Normal"
+    ],
+    "Species": "Rabbit Pokemon",
+    "Height": 0.4,
+    "Weight": 5.5,
+    "Abilities": [
+        "Run Away",
+        "Klutz",
+        "Limber"
+    ],
+    "Evolution": [
+        [
+            "Happiness",
+            220,
+            "Lopunny"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 55,
+        "Attack": 66,
+        "Defense": 44,
+        "Special Attack": 44,
+        "Special Defense": 56,
+        "Speed": 85
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
@@ -25,16 +37,19 @@
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
-        "Speed": 0
+        "Speed": 1
     },
-    "Capture Rate": 0,
+    "Capture Rate": 190,
     "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Base Exp": 70,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Field",
+        "Human-Like"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

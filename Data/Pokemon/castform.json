@@ -2,39 +2,80 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Castform",
     "ID": 351,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Normal"
+    ],
+    "Species": "Weather Pokemon",
+    "Height": 0.3,
+    "Weight": 0.8,
+    "Abilities": [
+        "Forecast"
+    ],
     "Evolution": [],
-    "Forms": {},
+    "Forms": {
+        "Rainy": {
+            "Activation": [
+                "Weather",
+                "Rain"
+            ],
+            "Types": [
+                "Water"
+            ],
+            "OverworldSprite": "",
+            "BattleSprite": "-2"
+        },
+        "Sunny": {
+            "Activation": [
+                "Weather",
+                "Sunny"
+            ],
+            "Types": [
+                "Fire"
+            ],
+            "OverworldSprite": "",
+            "BattleSprite": "-4"
+        },
+        "Snowy": {
+            "Activation": [
+                "Weather",
+                "Hail"
+            ],
+            "Types": [
+                "Ice"
+            ],
+            "OverworldSprite": "",
+            "BattleSprite": "-1"
+        }
+    },
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 80,
+        "Attack": 80,
+        "Defense": 80,
+        "Special Attack": 80,
+        "Special Defense": 80,
+        "Speed": 80
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
-        "HP": 0,
+        "HP": 2,
         "Attack": 0,
         "Defense": 0,
         "Special Attack": 0,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 147,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Amorphous",
+        "Fairy"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 25,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

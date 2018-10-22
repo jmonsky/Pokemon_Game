@@ -2,39 +2,64 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Cherrim",
     "ID": 421,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
+    "Types": [
+        "Grass"
+    ],
+    "Species": "Blossom Pokemon",
+    "Height": 0.5,
+    "Weight": 9.3,
+    "Abilities": [
+        "Flower Gift"
+    ],
     "Evolution": [],
-    "Forms": {},
+    "Forms": {
+        "Sunshine": {
+            "Activation": [
+                "Weather",
+                "Sunny"
+            ],
+            "OverworldSprite": "",
+            "BattleSprite": "-1",
+            "BaseStats": {
+                "HP": 70,
+                "Attack": 60,
+                "Defense": 70,
+                "Special Attack": 120,
+                "Special Defense": 78,
+                "Speed": 85
+            }
+        },
+        "Overcast": "Default"
+    },
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 70,
+        "Attack": 60,
+        "Defense": 70,
+        "Special Attack": 87,
+        "Special Defense": 78,
+        "Speed": 85
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
         "Defense": 0,
-        "Special Attack": 0,
+        "Special Attack": 3,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 158,
+    "Experience Group": "Medium Fast",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Fairy",
+        "Grass"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

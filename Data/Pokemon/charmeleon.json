@@ -2,39 +2,54 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Charmeleon",
     "ID": 5,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Fire",
+        "Dragon"
+    ],
+    "Species": "Flame Pokemon",
+    "Height": 1.1,
+    "Weight": 19,
+    "Abilities": [
+        "Blaze",
+        "Solar Power"
+    ],
+    "Evolution": [
+        [
+            "Level",
+            36,
+            "Charizard"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 58,
+        "Attack": 64,
+        "Defense": 58,
+        "Special Attack": 80,
+        "Special Defense": 65,
+        "Speed": 80
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
         "Defense": 0,
-        "Special Attack": 0,
+        "Special Attack": 1,
         "Special Defense": 0,
-        "Speed": 0
+        "Speed": 1
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 45,
+    "Base Friendship": 70,
+    "Base Exp": 142,
+    "Experience Group": "Medium Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
-    "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Groups": [
+        "Dragon",
+        "Monster"
+    ],
+    "Female Rate": 0.125,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,

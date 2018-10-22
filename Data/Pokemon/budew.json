@@ -2,39 +2,57 @@
     "**********POKEDEX DATA**********": "**********POKEDEX DATA**********",
     "Name": "Budew",
     "ID": 406,
-    "Types": [],
-    "Species": "",
-    "Height": 0,
-    "Weight": 0,
-    "Abilities": [],
-    "Evolution": [],
+    "Types": [
+        "Grass",
+        "Poison"
+    ],
+    "Species": "Bud Pokemon",
+    "Height": 0.2,
+    "Weight": 1.2,
+    "Abilities": [
+        "Natural Cure",
+        "Poison Point",
+        "Leaf Guard"
+    ],
+    "Evolution": [
+        [
+            "Happiness",
+            [
+                220,
+                "Daytime"
+            ],
+            "Roselia"
+        ]
+    ],
     "Forms": {},
     "**********BASE STATS**********": "**********BASE STATS**********",
     "BaseStats": {
-        "HP": 0,
-        "Attack": 0,
-        "Defense": 0,
-        "Special Attack": 0,
-        "Special Defense": 0,
-        "Speed": 0
+        "HP": 40,
+        "Attack": 30,
+        "Defense": 35,
+        "Special Attack": 50,
+        "Special Defense": 70,
+        "Speed": 55
     },
     "**********TRAINING**********": "**********TRAINING**********",
     "EV Yeld": {
         "HP": 0,
         "Attack": 0,
         "Defense": 0,
-        "Special Attack": 0,
+        "Special Attack": 1,
         "Special Defense": 0,
         "Speed": 0
     },
-    "Capture Rate": 0,
-    "Base Friendship": 0,
-    "Base Exp": 0,
-    "Experience Group": "",
+    "Capture Rate": 255,
+    "Base Friendship": 70,
+    "Base Exp": 56,
+    "Experience Group": "Medium Slow",
     "**********BREEDING**********": "**********BREEDING**********",
-    "Egg Groups": [],
+    "Egg Groups": [
+        "Undisocvered"
+    ],
     "Female Rate": 0.5,
-    "Egg Cycles": 0,
+    "Egg Cycles": 20,
     "**********SPRITES**********": "**********SPRITES**********",
     "SpriteFScale": 1,
     "SpriteOScale": 1,
